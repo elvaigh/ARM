@@ -1,0 +1,1050 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\ARMCode\RTOSDemo\RTOSDemo.uvproj
+Project File Date:  01/21/2013
+
+<h2>Output:</h2>
+Build target 'WebServerELF'
+compiling list.c...
+compiling queue.c...
+compiling tasks.c...
+compiling port.c...
+compiling timers.c...
+compiling main.c...
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(233): warning: format '%d' expects type 'int', but argument 2 has type 'long int'
+MainFiles/i2cTemp.c(233): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(233): warning: format '%d' expects type 'int', but argument 2 has type 'long int'
+MainFiles/i2cTemp.c(233): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(234): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(234): warning: format '%d' expects type 'int', but argument 4 has type 'long int'
+MainFiles/i2cTemp.c(234): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(234): warning: format '%d' expects type 'int', but argument 4 has type 'long int'
+compiling vtUtilities.c...
+compiling ParTest.c...
+compiling LCDtask.c...
+compiling myTimers.c...
+compiling conductor.c...
+compiling syscalls.c...
+compiling system_LPC17xx.c...
+assembling startup_LPC17xx.s...
+compiling USB_CDC.c...
+compiling usbcontrol.c...
+compiling usbhw_lpc.c...
+compiling usbinit.c...
+compiling usbstdreq.c...
+compiling BlockQ.c...
+compiling blocktim.c...
+compiling flash.c...
+compiling GenQTest.c...
+compiling integer.c...
+compiling PollQ.c...
+compiling QPeek.c...
+compiling recmutex.c...
+compiling semtest.c...
+compiling emac.c...
+compiling httpd.c...
+compiling httpd-cgi.c...
+compiling httpd-fs.c...
+compiling http-strings.c...
+compiling uIP_Task.c...
+compiling psock.c...
+compiling timer.c...
+compiling uip_arp.c...
+compiling uip.c...
+compiling vtSSP.c...
+compiling GLCD_SPI_LPC1700.c...
+compiling lpc17xx_clkpwr.c...
+compiling lpc17xx_i2c.c...
+../NXPDrivers/source/lpc17xx_i2c.c: In function 'I2C_Init':
+../NXPDrivers/source/lpc17xx_i2c.c(213): warning: 'temp' may be used uninitialized in this function
+../NXPDrivers/source/lpc17xx_i2c.c: In function 'I2C_SlaveTransferData':
+../NXPDrivers/source/lpc17xx_i2c.c(985): warning: 'CodeStatus' may be used uninitialized in this function
+compiling lpc17xx_libcfg_default.c...
+compiling lpc17xx_pinsel.c...
+compiling lpc17xx_gpio.c...
+compiling lpc17xx_ssp.c...
+../NXPDrivers/source/lpc17xx_ssp.c: In function 'SSP_ReadWrite':
+../NXPDrivers/source/lpc17xx_ssp.c(342): warning: 'rdata8' may be used uninitialized in this function
+../NXPDrivers/source/lpc17xx_ssp.c(343): warning: 'wdata8' may be used uninitialized in this function
+../NXPDrivers/source/lpc17xx_ssp.c(344): warning: 'rdata16' may be used uninitialized in this function
+../NXPDrivers/source/lpc17xx_ssp.c(345): warning: 'wdata16' may be used uninitialized in this function
+compiling vtI2C.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 14 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling list.c...
+compiling queue.c...
+compiling tasks.c...
+compiling port.c...
+compiling timers.c...
+compiling main.c...
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(127): warning: unused variable 'lastVal'
+MainFiles/i2cTemp.c(126): warning: unused variable 'xVal'
+MainFiles/i2cTemp.c(125): warning: unused variable 'voltage'
+compiling vtUtilities.c...
+compiling ParTest.c...
+compiling LCDtask.c...
+MainFiles/LCDtask.c: In function 'vLCDUpdateTask':
+MainFiles/LCDtask.c(339): error: 'Orange' undeclared (first use in this function)
+MainFiles/LCDtask.c(339): error: note: each undeclared identifier is reported only once for each function it appears in
+MainFiles/LCDtask.c(407): warning: unused variable 'end'
+MainFiles/LCDtask.c(305): warning: unused variable 'y'
+MainFiles/LCDtask.c(304): warning: unused variable 'timerCount'
+MainFiles/LCDtask.c: At top level:
+MainFiles/LCDtask.c(594): warning: 'hsl2rgb' defined but not used
+MainFiles/LCDtask.c(294): warning: 'buffer' defined but not used
+compiling myTimers.c...
+compiling conductor.c...
+compiling syscalls.c...
+compiling system_LPC17xx.c...
+assembling startup_LPC17xx.s...
+compiling USB_CDC.c...
+compiling usbcontrol.c...
+compiling usbhw_lpc.c...
+compiling usbinit.c...
+compiling usbstdreq.c...
+compiling BlockQ.c...
+compiling blocktim.c...
+compiling flash.c...
+compiling GenQTest.c...
+compiling integer.c...
+compiling PollQ.c...
+compiling QPeek.c...
+compiling recmutex.c...
+compiling semtest.c...
+compiling emac.c...
+compiling httpd.c...
+compiling httpd-cgi.c...
+compiling httpd-fs.c...
+compiling http-strings.c...
+compiling uIP_Task.c...
+compiling psock.c...
+compiling timer.c...
+compiling uip_arp.c...
+compiling uip.c...
+compiling vtSSP.c...
+compiling GLCD_SPI_LPC1700.c...
+compiling lpc17xx_clkpwr.c...
+compiling lpc17xx_i2c.c...
+../NXPDrivers/source/lpc17xx_i2c.c: In function 'I2C_Init':
+../NXPDrivers/source/lpc17xx_i2c.c(213): warning: 'temp' may be used uninitialized in this function
+../NXPDrivers/source/lpc17xx_i2c.c: In function 'I2C_SlaveTransferData':
+../NXPDrivers/source/lpc17xx_i2c.c(985): warning: 'CodeStatus' may be used uninitialized in this function
+compiling lpc17xx_libcfg_default.c...
+compiling lpc17xx_pinsel.c...
+compiling lpc17xx_gpio.c...
+compiling lpc17xx_ssp.c...
+../NXPDrivers/source/lpc17xx_ssp.c: In function 'SSP_ReadWrite':
+../NXPDrivers/source/lpc17xx_ssp.c(342): warning: 'rdata8' may be used uninitialized in this function
+../NXPDrivers/source/lpc17xx_ssp.c(343): warning: 'wdata8' may be used uninitialized in this function
+../NXPDrivers/source/lpc17xx_ssp.c(344): warning: 'rdata16' may be used uninitialized in this function
+../NXPDrivers/source/lpc17xx_ssp.c(345): warning: 'wdata16' may be used uninitialized in this function
+compiling vtI2C.c...
+Target not created
+Build target 'WebServerELF'
+compiling LCDtask.c...
+MainFiles/LCDtask.c: In function 'vLCDUpdateTask':
+MainFiles/LCDtask.c(407): warning: unused variable 'end'
+MainFiles/LCDtask.c(305): warning: unused variable 'y'
+MainFiles/LCDtask.c(304): warning: unused variable 'timerCount'
+MainFiles/LCDtask.c: At top level:
+MainFiles/LCDtask.c(594): warning: 'hsl2rgb' defined but not used
+MainFiles/LCDtask.c(294): warning: 'buffer' defined but not used
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(138): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(127): warning: unused variable 'lastVal'
+MainFiles/i2cTemp.c(126): warning: unused variable 'xVal'
+MainFiles/i2cTemp.c(125): warning: unused variable 'voltage'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 4 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 0 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 0 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 0 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 7 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 0 Warning(s).
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(277): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(281): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+MainFiles/i2cTemp.c(133): warning: unused variable 'voltage'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 8 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 0 Warning(s).
+Build target 'WebServerELF'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 0 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(273): error: expected expression before '/' token
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+Target not created
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 0 Warning(s).
+Build target 'WebServerELF'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 0 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling LCDtask.c...
+MainFiles/LCDtask.c: In function 'vLCDUpdateTask':
+MainFiles/LCDtask.c(407): warning: unused variable 'end'
+MainFiles/LCDtask.c(305): warning: unused variable 'y'
+MainFiles/LCDtask.c(304): warning: unused variable 'timerCount'
+MainFiles/LCDtask.c: At top level:
+MainFiles/LCDtask.c(597): warning: 'hsl2rgb' defined but not used
+MainFiles/LCDtask.c(294): warning: 'buffer' defined but not used
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(276): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(280): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+MainFiles/i2cTemp.c(133): warning: unused variable 'voltage'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 8 Warning(s).
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(276): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(280): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+MainFiles/i2cTemp.c(133): warning: unused variable 'voltage'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 8 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(277): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(281): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+MainFiles/i2cTemp.c(133): warning: unused variable 'voltage'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 8 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify Failed!
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 0 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(277): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(281): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+MainFiles/i2cTemp.c(133): warning: unused variable 'voltage'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 8 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify Failed!
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(258): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(258): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Cannot enter Debug Mode
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 6 Warning(s).
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(281): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(285): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+MainFiles/i2cTemp.c(133): warning: unused variable 'voltage'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 8 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(277): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(281): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(285): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+MainFiles/i2cTemp.c(133): warning: unused variable 'voltage'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(277): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(281): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(285): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+MainFiles/i2cTemp.c(133): warning: unused variable 'voltage'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(277): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(281): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(285): warning: comparison between pointer and integer
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+MainFiles/i2cTemp.c(133): warning: unused variable 'voltage'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(297): warning: passing argument 2 of 'strcat' makes pointer from integer without a cast
+c:\program files\codesourcery\sourcery g++ lite\bin\../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/include/string.h:27:8: note: expected 'const char *' but argument is of type 'char'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 6 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(298): warning: passing argument 2 of 'strcat' makes pointer from integer without a cast
+c:\program files\codesourcery\sourcery g++ lite\bin\../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/include/string.h:27:8: note: expected 'const char *' but argument is of type 'char'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 6 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(257): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(274): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(274): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Build target 'WebServerELF'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 0 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(274): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(274): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(274): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(274): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 7 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(277): error: expected ';' before '}' token
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+Target not created
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(277): error: expected ';' before '}' token
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+Target not created
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 7 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 7 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 7 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 0 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 7 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Internal DLL Error
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(283): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(283): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(145): warning: unused variable 'lcdBuffer'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+compiling myTimers.c...
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 7 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(278): warning: statement with no effect
+MainFiles/i2cTemp.c(279): error: expected ';' before '{' token
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+Target not created
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 7 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'getCharValue':
+MainFiles/i2cTemp.c(112): warning: return makes pointer from integer without a cast
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(147): warning: unused variable 'msgChar'
+MainFiles/i2cTemp.c(146): warning: unused variable 'msgString'
+MainFiles/i2cTemp.c(137): warning: unused variable 'stringLine'
+MainFiles/i2cTemp.c(136): warning: unused variable 'xStart'
+MainFiles/i2cTemp.c(135): warning: unused variable 'buff'
+MainFiles/i2cTemp.c(134): warning: unused variable 'buffCount'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 7 Warning(s).
+Load "C:\\ARMCode\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
