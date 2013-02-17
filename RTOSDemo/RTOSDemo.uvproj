@@ -332,11 +332,6 @@
               <FilePath>.\MainFiles/main.c</FilePath>
             </File>
             <File>
-              <FileName>i2cTemp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MainFiles/i2cTemp.c</FilePath>
-            </File>
-            <File>
               <FileName>vtUtilities.c</FileName>
               <FileType>1</FileType>
               <FilePath>../vtCode/vtUtilities.c</FilePath>
@@ -360,6 +355,16 @@
               <FileName>conductor.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\MainFiles/conductor.c</FilePath>
+            </File>
+            <File>
+              <FileName>navigation.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MainFiles/navigation.c</FilePath>
+            </File>
+            <File>
+              <FileName>mapping.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MainFiles/mapping.c</FilePath>
             </File>
           </Files>
         </Group>

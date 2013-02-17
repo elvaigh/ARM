@@ -12,7 +12,8 @@
 /* include files. */
 #include "vtUtilities.h"
 #include "vtI2C.h"
-#include "i2cTemp.h"
+#include "navigation.h"
+#include "mapping.h"
 #include "I2CTaskMsgTypes.h"
 #include "conductor.h"
 
@@ -31,17 +32,18 @@
 // end of defs
 /* *********************************************** */
 
-/* The i2cTemp task. */
+/* The navigation task. */
 static portTASK_FUNCTION_PROTO( vConductorUpdateTask, pvParameters );
 
 /*-----------------------------------------------------------*/
 // Public API
-void vStartConductorTask(vtConductorStruct *params,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtTempStruct *temperature)
+void vStartConductorTask(vtConductorStruct *params,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtNavStruct *navigation, vtMapStruct *mapping)
 {
 	/* Start the task */
 	portBASE_TYPE retval;
 	params->dev = i2c;
-	params->tempData = temperature;
+	params->navData = navigation;
+	params->mapData = mapping;
 	if ((retval = xTaskCreate( vConductorUpdateTask, ( signed char * ) "Conductor", conSTACK_SIZE, (void *) params, uxPriority, ( xTaskHandle * ) NULL )) != pdPASS) {
 		VT_HANDLE_FATAL_ERROR(retval);
 	}
@@ -53,15 +55,21 @@ void vStartConductorTask(vtConductorStruct *params,unsigned portBASE_TYPE uxPrio
 // This is the actual task that is run
 static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 {
+	int first = 0;
 	uint8_t rxLen, status;
 	uint8_t Buffer[vtI2CMLen];
 	uint8_t *valPtr = &(Buffer[0]);
+	uint8_t *raidPtr = &(Buffer[1]);
+	uint8_t *rightDPtr = &(Buffer[2]);
+	uint8_t *leftDPtr = &(Buffer[3]);
 	// Get the parameters
 	vtConductorStruct *param = (vtConductorStruct *) pvParameters;
 	// Get the I2C device pointer
 	vtI2CStruct *devPtr = param->dev;
-	// Get the LCD information pointer
-	vtTempStruct *tempData = param->tempData;
+	// Get the nav information pointer
+	vtNavStruct *navData = param->navData;
+	// Get the map information pointer
+	vtMapStruct *mapData = param->mapData;
 	uint8_t recvMsgType;
 
 	// Like all good tasks, this should never exit
@@ -73,28 +81,18 @@ static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 		}
 
 		// Decide where to send the message 
-		//   This just shows going to one task/queue, but you could easily send to
-		//   other Q/tasks for other message types
 		// This isn't a state machine, it is just acting as a router for messages
 		switch(recvMsgType) {
-		case vtI2CMsgTypeTempInit: {
-			SendTempValueMsg(tempData,recvMsgType,(*valPtr),portMAX_DELAY);
+		case vtI2CMsgTypeMotorRead: {
+			SendNavMsg(navData,recvMsgType,(*valPtr),(*raidPtr),(*rightDPtr),(*leftDPtr),portMAX_DELAY);
 			break;
 		}
-		case vtI2CMsgTypeTempRead1: {
-			SendTempValueMsg(tempData,recvMsgType,(*valPtr),portMAX_DELAY);
-			break;
-		}
-		case vtI2CMsgTypeTempRead2: {
-			SendTempValueMsg(tempData,recvMsgType,(*valPtr),portMAX_DELAY);
-			break;
-		}
-		case vtI2CMsgTypeTempRead3: {
-			SendTempValueMsg(tempData,recvMsgType,(*valPtr),portMAX_DELAY);
+		case vtI2CMsgTypeSensorRead: {
+			SendNavMsg(navData,recvMsgType,6/*(*valPtr)*/,0,0,0,portMAX_DELAY);
 			break;
 		}
 		default: {
-			VT_HANDLE_FATAL_ERROR(recvMsgType);
+			//VT_HANDLE_FATAL_ERROR(recvMsgType);
 			break;
 		}
 		}

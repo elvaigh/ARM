@@ -15,7 +15,8 @@ ObjectFiles/mytimers.o: MainFiles/myTimers.c \
  ../FreeRTOS/Source/include/timers.h ../vtCode/vtUtilities.h \
  ../NXPDrivers/include/lpc_types.h C:/Keil/ARM/INC/NXP/LPC17xx/lpc17xx.h \
  MainFiles/LCDtask.h ../FreeRTOS/Source/include/queue.h \
- MainFiles/myTimers.h MainFiles/lcdTask.h MainFiles/i2cTemp.h \
+ MainFiles/myTimers.h MainFiles/lcdTask.h MainFiles/navigation.h \
  ../vtCode/vtI2C/vtI2C.h ../NXPDrivers/include/lpc17xx_i2c.h \
  ../NXPDrivers/include/lpc_types.h ../FreeRTOS/Source/include/projDefs.h \
- ../FreeRTOS/Source/include/semphr.h ../FreeRTOS/Source/include/queue.h
+ ../FreeRTOS/Source/include/semphr.h ../FreeRTOS/Source/include/queue.h \
+ MainFiles/mapping.h
