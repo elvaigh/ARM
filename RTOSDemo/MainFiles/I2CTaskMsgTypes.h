@@ -7,12 +7,22 @@
 //
 // I have defined them all here so that they are unique
 
-#define vtI2CMsgTypeMotorRead 1
-#define vtI2CMsgTypeSensorRead 2
+#define vtI2CMsgTypeMotorRead 53
+#define vtI2CMsgTypeMotorSend 52  //Command send to you
+#define vtI2CMsgTypeAccRead 54
+#define vtI2CMsgTypeIRRead 55
 
 // below is not actually an i2c message, but the value is reserved
 #define NavMsgTypeTimer 3 
-#define MapMessageTurn 4
-#define MapMessageWall 5
-#define vtMsgTypeNavMsg	6
+#define SensorMsgTypeTimer 4 
+#define MapMessageTurn 5
+#define MapMessageWall 6
+#define vtMsgTypeNavMsg	7
+#define testNavMsg 8
+
+#define motorCommand 52
+#define motorData 53
+#define accelerometer 54
+#define IRSensor 55
+
 #endif

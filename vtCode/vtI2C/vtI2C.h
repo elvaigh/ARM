@@ -6,6 +6,7 @@
 #include "FreeRTOS.h"
 #include "projDefs.h"
 #include "semphr.h"
+#include "lcdTask.h"
 
 // return codes for vtI2CInit()
 #define vtI2CErrInit -1
@@ -38,7 +39,7 @@ typedef struct __vtI2CStruct {
 //   if successful, returns vtI2CInitSuccess
 //   if not, should return vtI2CErrInit
 // Must be called for each I2C device initialized (0, 1, or 2) and used
-int vtI2CInit(vtI2CStruct *devPtr,uint8_t i2cDevNum,unsigned portBASE_TYPE taskPriority,uint32_t i2cSpeed);
+int vtI2CInit(vtI2CStruct *devPtr,uint8_t i2cDevNum,unsigned portBASE_TYPE taskPriority,uint32_t i2cSpeed,vtLCDStruct *lcd);
 
 // A simple routine to use for filling out and sending a message to the I2C thread
 //   You may want to make your own versions of these as they are not suited to all purposes

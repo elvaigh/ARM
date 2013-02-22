@@ -148,7 +148,7 @@ void vParTestSetLEDState( long lState )
 	/* Used to set and clear the LEDs on FIO1. */
 	if( lState != pdFALSE )
 	{
-		GPIO1->FIOSET = partstFIO1_BITS;
+		GPIO2->FIOSET = partstFIO1_BITS;
 	}
 	else
 	{

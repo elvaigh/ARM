@@ -156,12 +156,14 @@ static portTASK_FUNCTION( vMapUpdateTask, pvParameters )
 			int rightD = getRightDistance(&msgBuffer);
 			int leftD = getLeftDistance(&msgBuffer);
 		
+			
+			//sprintf(lcdBuffer,"Mapping");
 			sprintf(lcdBuffer,"Values are = %d, %d, %d",lrint(value),lrint(rightD),lrint(leftD));
 			if (lcdData != NULL) {
-				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,2,portMAX_DELAY) != pdTRUE) {
+				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,5,portMAX_DELAY) != pdTRUE) {
 					VT_HANDLE_FATAL_ERROR(0);
 				}
-			}
+			} 
 			break;
 		}
 		default: {

@@ -159,6 +159,8 @@ handling library calls. */
 without an error being reported. */
 #define mainPASS_STATUS_MESSAGE				"All tasks are executing without error."
 
+#define USE_WEB_SERVER 1
+
 /*-----------------------------------------------------------*/
 
 /*
@@ -236,13 +238,13 @@ int main( void )
     xTaskCreate( vuIP_Task, ( signed char * ) "uIP", mainBASIC_WEB_STACK_SIZE, ( void * ) NULL, mainUIP_TASK_PRIORITY, NULL );
 	#endif
 
-	#if USE_MTJ_LCD == 1
-	// MTJ: My LCD demonstration task
+	#if USE_NAV == 1
+
 	StartLCDTask(&vtLCDdata,mainLCD_TASK_PRIORITY);
 	// LCD Task creates a queue to receive messages -- what it does with those messages will depend on how the task is configured (see LCDtask.c)
 	// Here we set up a timer that will send messages to the LCD task.  You don't have to have this timer for the LCD task, it is just showing
 	//  how to use a timer and how to send messages from that timer.
-	startTimerForLCD(&vtLCDdata);
+	//startTimerForLCD(&vtLCDdata);
 	#endif
 	
 	#if USE_MTJ_V4Temp_Sensor == 1
@@ -276,7 +278,7 @@ int main( void )
 	// First, start up an I2C task and associate it with the I2C0 hardware on the ARM (there are 3 I2C devices, we need this one)
 	// See vtI2C.h & vtI2C.c for more details on this task and the API to access the task
 	// Initialize I2C0 for I2C0 at an I2C clock speed of 100KHz
-	if (vtI2CInit(&vtI2C0,0,mainI2CMONITOR_TASK_PRIORITY,100000) != vtI2CInitSuccess) {
+	if (vtI2CInit(&vtI2C0,0,mainI2CMONITOR_TASK_PRIORITY,100000,&vtLCDdata) != vtI2CInitSuccess) {
 		VT_HANDLE_FATAL_ERROR(0);
 	}
 	//Start up the task that is going to handle the navigation

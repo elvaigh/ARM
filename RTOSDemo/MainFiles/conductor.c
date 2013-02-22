@@ -55,7 +55,6 @@ void vStartConductorTask(vtConductorStruct *params,unsigned portBASE_TYPE uxPrio
 // This is the actual task that is run
 static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 {
-	int first = 0;
 	uint8_t rxLen, status;
 	uint8_t Buffer[vtI2CMLen];
 	uint8_t *valPtr = &(Buffer[0]);
@@ -79,7 +78,6 @@ static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 		if (vtI2CDeQ(devPtr,vtI2CMLen,Buffer,&rxLen,&recvMsgType,&status) != pdTRUE) {
 			VT_HANDLE_FATAL_ERROR(0);
 		}
-
 		// Decide where to send the message 
 		// This isn't a state machine, it is just acting as a router for messages
 		switch(recvMsgType) {
@@ -87,8 +85,12 @@ static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 			SendNavMsg(navData,recvMsgType,(*valPtr),(*raidPtr),(*rightDPtr),(*leftDPtr),portMAX_DELAY);
 			break;
 		}
-		case vtI2CMsgTypeSensorRead: {
-			SendNavMsg(navData,recvMsgType,6/*(*valPtr)*/,0,0,0,portMAX_DELAY);
+		case vtI2CMsgTypeAccRead: {
+			SendNavMsg(navData,recvMsgType,(*valPtr),(*raidPtr),0,0,portMAX_DELAY);
+			break;
+		}
+		case vtI2CMsgTypeIRRead: {
+			SendNavMsg(navData,recvMsgType,(*valPtr),(*raidPtr),0,0,portMAX_DELAY);
 			break;
 		}
 		default: {

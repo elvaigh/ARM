@@ -34,7 +34,8 @@ ObjectFiles/vti2c.o: ../vtCode/vtI2C/vtI2C.c \
  ../FreeRTOS/Source/include/mpu_wrappers.h \
  ../FreeRTOS/Source/include/projDefs.h \
  ../FreeRTOS/Source/include/semphr.h ../FreeRTOS/Source/include/queue.h \
- ../FreeRTOS/Source/include/task.h ../FreeRTOS/Source/include/list.h \
- ../FreeRTOS/Source/include/projdefs.h \
+ MainFiles/lcdTask.h ../FreeRTOS/Source/include/queue.h \
+ ../FreeRTOS/Source/include/timers.h ../FreeRTOS/Source/include/list.h \
+ ../FreeRTOS/Source/include/task.h ../FreeRTOS/Source/include/projdefs.h \
  ../NXPDrivers/include/lpc17xx_libcfg_default.h \
  ../NXPDrivers/include/lpc17xx_pinsel.h

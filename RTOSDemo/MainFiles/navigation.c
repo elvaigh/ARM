@@ -92,6 +92,16 @@ portBASE_TYPE SendNavMsg(vtNavStruct *navData,uint8_t msgType,uint8_t value,uint
 	return(xQueueSend(navData->inQ,(void *) (&navBuffer),ticksToBlock));
 }
 
+portBASE_TYPE SendSensorTimerMsg(vtNavStruct *navData,portTickType ticksElapsed,portTickType ticksToBlock)
+{
+	if (navData == NULL) {
+		VT_HANDLE_FATAL_ERROR(0);
+	}
+	vtNavMsg navBuffer;
+	navBuffer.msgType = SensorMsgTypeTimer;
+	return(xQueueSend(navData->inQ,(void *) (&navBuffer),ticksToBlock));
+}
+
 // End of Public API
 /*-----------------------------------------------------------*/
 int getMsgType(vtNavMsg *Buffer)
@@ -130,7 +140,7 @@ uint8_t getLeftDistance(vtNavMsg *Buffer)
 
 // I2C commands for the Motor Encoder
 	const uint8_t i2cCmdReadVals[]= {0xAA};
-	const uint8_t i2cCmdStraight[]= {0xAA};
+	const uint8_t i2cCmdStraight[]= {0x80,0x80};
 // end of I2C command definitions
 
 // Definitions of the states for the FSM below
@@ -158,8 +168,7 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 
 	// String buffer for printing
 	char lcdBuffer[vtLCDMaxLen+1];
-	char msgString[vtLCDMaxLen+1];
-	char *msgChar;
+
 	// Buffer for receiving messages
 	vtNavMsg msgBuffer;
 	uint8_t currentState;
@@ -170,15 +179,6 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 	//   whether or not the state should change.
 	
 	currentState = fsmStateClear;
-
-	#if PRINTGRAPH == 1
-	if (SendLCDLine(lcdData,30,200,320,200,portMAX_DELAY) != pdTRUE) {
-						VT_HANDLE_FATAL_ERROR(0);
- 	}
-	if (SendLCDLine(lcdData,30,10,30,200,portMAX_DELAY) != pdTRUE) {
-						VT_HANDLE_FATAL_ERROR(0);
- 	} 
-	#endif
 	  
 	// Like all good tasks, this should never exit
 	for(;;)
@@ -201,27 +201,54 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 			if (SendMapMsg(mapData,MapMessageTurn,radius,rightD,leftD,portMAX_DELAY) != pdTRUE) {
 						VT_HANDLE_FATAL_ERROR(0);
 					}
+			
+	
+			sprintf(lcdBuffer,"Receiving");
+			if (lcdData != NULL) {
+				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,1,portMAX_DELAY) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+				}
+			}
 			break;
 		}
-		case vtI2CMsgTypeSensorRead: {
-
+		case vtI2CMsgTypeIRRead: {
+			sprintf(lcdBuffer,"Receiving IR");
+			if (lcdData != NULL) {
+				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,2,portMAX_DELAY) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+				}
+			}
 			//For now just send back a command to go straight
 			if (vtI2CEnQ(devPtr,vtI2CMsgTypeMotorRead,0x4F,sizeof(i2cCmdStraight),i2cCmdStraight,0) != pdTRUE) {
 				VT_HANDLE_FATAL_ERROR(0);
 			}
 			break;
 		}
-		case NavMsgTypeTimer: {
-			if (vtI2CEnQ(devPtr,NavMsgTypeTimer,0x4F,sizeof(i2cCmdReadVals),i2cCmdReadVals,1) != pdTRUE) {
-				VT_HANDLE_FATAL_ERROR(0);
-			}
+		case vtI2CMsgTypeAccRead: {
 
-			sprintf(lcdBuffer,"Timer Messages");
+			sprintf(lcdBuffer,"Receiving Acc");
 			if (lcdData != NULL) {
-				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,2,portMAX_DELAY) != pdTRUE) {
+				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,1,portMAX_DELAY) != pdTRUE) {
 					VT_HANDLE_FATAL_ERROR(0);
 				}
 			}
+			//For now just send back a command to go straight
+			if (vtI2CEnQ(devPtr,vtI2CMsgTypeMotorSend,0x4F,sizeof(i2cCmdStraight),i2cCmdStraight,0) != pdTRUE) {
+				VT_HANDLE_FATAL_ERROR(0);
+			}
+			break;
+		}
+		case NavMsgTypeTimer: {
+			if (vtI2CEnQ(devPtr,NavMsgTypeTimer,0x4F,sizeof(i2cCmdReadVals),i2cCmdReadVals,7) != pdTRUE) {
+				VT_HANDLE_FATAL_ERROR(0);
+			}
+			
+			/*sprintf(lcdBuffer,"Timer Messages");
+			if (lcdData != NULL) {
+				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,6,portMAX_DELAY) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+				}
+			} */
 			 
 			break;
 		}

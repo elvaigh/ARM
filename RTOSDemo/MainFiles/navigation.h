@@ -33,6 +33,7 @@ void vStartNavTask(vtNavStruct *navData,unsigned portBASE_TYPE uxPriority, vtI2C
 // Return:
 //   Result of the call to xQueueSend()
 portBASE_TYPE SendNavTimerMsg(vtNavStruct *navData,portTickType ticksElapsed,portTickType ticksToBlock);
+
 //
 // Send a value message to the Navigation task
 // Args:

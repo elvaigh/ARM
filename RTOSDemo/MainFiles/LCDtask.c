@@ -285,14 +285,6 @@ void copyMsgString(char *target,vtLCDMsg *lcdBuffer,int targetMaxLen)
 #include "ARM_Ani_16bpp.c"
 #endif
 
-static unsigned short hsl2rgb(float H,float S,float L);
-
-#if LCD_EXAMPLE_OP==0
-// Buffer in which to store the memory read from the LCD
-	#define MAX_RADIUS 15
-	#define BUF_LEN (((MAX_RADIUS*2)+1)*((MAX_RADIUS*2)+1))
-	static unsigned short int buffer[BUF_LEN];
-#endif
 
 // This is the actual task that is run
 static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
@@ -301,8 +293,7 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 	unsigned short screenColor = 0;
 	unsigned short tscr;
 	unsigned char curLine;
-	unsigned timerCount = 0;
-	unsigned int x, y;
+	unsigned int x;
 	#elif LCD_EXAMPLE_OP==1
 	unsigned char picIndex = 0;
 	#else
@@ -404,7 +395,6 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 			int xf = getMsgXf(&msgBuffer);
 			int yf = getMsgYf(&msgBuffer);
 			int i = 0;
-			int end = xf-xs;
 			x = xs;
 			if(xf == xs)
 			{
@@ -584,63 +574,4 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 		Bad setting
 		#endif	
 	}
-}
-
-// Convert from HSL colormap to RGB values in this weird colormap
-// H: 0 to 360
-// S: 0 to 1
-// L: 0 to 1
-// The LCD has a funky bitmap.  Each pixel is 16 bits (a "short unsigned int")
-//   Red is the most significant 5 bits
-//   Blue is the least significant 5 bits
-//   Green is the middle 6 bits
-static unsigned short hsl2rgb(float H,float S,float L)
-{
-	float C = (1.0 - fabs(2.0*L-1.0))*S;
-	float Hprime = H / 60;
-	unsigned short t = Hprime / 2.0;
-	t *= 2;
-	float X = C * (1-abs((Hprime - t) - 1));
-	unsigned short truncHprime = Hprime;
-	float R1, G1, B1;
-
-	switch(truncHprime) {
-		case 0: {
-			R1 = C; G1 = X; B1 = 0;
-			break;
-		}
-		case 1: {
-			R1 = X; G1 = C; B1 = 0;
-			break;
-		}
-		case 2: {
-			R1 = 0; G1 = C; B1 = X;
-			break;
-		}
-		case 3: {
-			R1 = 0; G1 = X; B1 = C;
-			break;
-		}
-		case 4: {
-			R1 = X; G1 = 0; B1 = C;
-			break;
-		}
-		case 5: {
-			R1 = C; G1 = 0; B1 = X;
-			break;
-		}
-		default: {
-			// make the compiler stop generating warnings
-			R1 = 0; G1 = 0; B1 = 0;
-			VT_HANDLE_FATAL_ERROR(Hprime);
-			break;
-		}
-	}
-	float m = L - 0.5*C;
-	R1 += m; G1 += m; B1 += m;
-	unsigned short red = R1*32; if (red > 31) red = 31;
-	unsigned short green = G1*64; if (green > 63) green = 63;
-	unsigned short blue = B1*32; if (blue > 31) blue = 31;
-	unsigned short color = (red << 11) | (green << 5) | blue;
-	return(color); 
 }
