@@ -24,10 +24,9 @@
 // actual data structure that is sent in a message
 typedef struct __vtNavMsg {
 	uint8_t msgType;
-	uint8_t speed;	 // speed the rover is going
-	uint8_t radius;	 // turning radius of the rover
-	uint8_t rightDistance;
-	uint8_t leftDistance;
+	uint8_t count;	 
+	uint8_t value1;	 
+	uint8_t value2;
 } vtNavMsg;
 
 // I have set this to a large stack size because of (a) using printf() and (b) the depth of function calls
@@ -77,7 +76,7 @@ portBASE_TYPE SendNavTimerMsg(vtNavStruct *navData,portTickType ticksElapsed,por
 }
 
 
-portBASE_TYPE SendNavMsg(vtNavStruct *navData,uint8_t msgType,uint8_t value,uint8_t radius,uint8_t rightDistance,uint8_t leftDistance,portTickType ticksToBlock)
+portBASE_TYPE SendNavMsg(vtNavStruct *navData,uint8_t msgType,uint8_t count,uint8_t val1,uint8_t val2,portTickType ticksToBlock)
 {
 	vtNavMsg navBuffer;
 
@@ -85,10 +84,9 @@ portBASE_TYPE SendNavMsg(vtNavStruct *navData,uint8_t msgType,uint8_t value,uint
 		VT_HANDLE_FATAL_ERROR(0);
 	}
 	navBuffer.msgType = msgType;
-	navBuffer.speed = value;
-	navBuffer.radius = radius;
-	navBuffer.rightDistance = rightDistance;
-	navBuffer.leftDistance = leftDistance;
+	navBuffer.count = count;
+	navBuffer.value1 = val1;
+	navBuffer.value2 = val2;
 	return(xQueueSend(navData->inQ,(void *) (&navBuffer),ticksToBlock));
 }
 
@@ -108,25 +106,20 @@ int getMsgType(vtNavMsg *Buffer)
 {
 	return(Buffer->msgType);
 }
-uint8_t getValue(vtNavMsg *Buffer)
+uint8_t getCount(vtNavMsg *Buffer)
 {
-	uint8_t val = (uint8_t) Buffer->speed;
+	uint8_t val = (uint8_t) Buffer->count;
 	return(val);
 }
-uint8_t getRadius(vtNavMsg *Buffer)
+uint8_t getVal1(vtNavMsg *Buffer)
 {
-	uint8_t rad = (uint8_t) Buffer->radius;
+	uint8_t rad = (uint8_t) Buffer->value1;
 	return(rad);
 }
-uint8_t getRightDistance(vtNavMsg *Buffer)
+uint8_t getVal2(vtNavMsg *Buffer)
 {
-	uint8_t rd = (uint8_t) Buffer->rightDistance;
+	uint8_t rd = (uint8_t) Buffer->value2;
 	return(rd);
-}
-uint8_t getLeftDistance(vtNavMsg *Buffer)
-{
-	uint8_t ld = (uint8_t) Buffer->leftDistance;
-	return(ld);
 }
 
 /* I2C commands for the temperature sensor
@@ -144,19 +137,25 @@ uint8_t getLeftDistance(vtNavMsg *Buffer)
 // end of I2C command definitions
 
 // Definitions of the states for the FSM below
-const uint8_t fsmStateClear = 0;
-const uint8_t fsmStateWallFront = 1;
-const uint8_t fsmStateWallRight = 2;	  
-const uint8_t fsmStateWallLeft = 3;
-const uint8_t fsmStateWallFrontRight = 4;
-const uint8_t fsmStateWallFrontLeft = 5;
-const uint8_t fsmStateWallFrontRightLeft = 6;
-const uint8_t fsmStateWallALL = 7;
+const uint8_t fsmStateStraight = 0;
+const uint8_t fsmStateTurnLeft = 1;
+const uint8_t fsmStateTurnRight = 2;	  
+const uint8_t fsmStateHault = 3;
+
 // This is the actual task that is run
 static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 {
 	// Define local constants here
-
+	int countStartIR1 = 0;
+	int countStartIR2 = 0;
+	int countStartIR3 = 0;
+	int countStartAcc = 0;
+	int countStartMotor = 0;
+	int countIR1 = 0;
+	int countIR2 = 0;
+	int countIR3 = 0;
+	int countAcc = 0;
+	int countMotor = 0;
 	// Get the parameters
 	vtNavStruct *param = (vtNavStruct *) pvParameters;
 	// Get the I2C device pointer
@@ -178,7 +177,7 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 	// This task is implemented as a Finite State Machine.  The incoming messages are examined to see
 	//   whether or not the state should change.
 	
-	currentState = fsmStateClear;
+	currentState = fsmStateStraight;
 	  
 	// Like all good tasks, this should never exit
 	for(;;)
@@ -193,12 +192,12 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 		case vtI2CMsgTypeMotorRead: {
 
 			//Send a message to the map telling it what we got
-			int speed = getValue(&msgBuffer);
-			int radius = getRadius(&msgBuffer);
-			int rightD = getRightDistance(&msgBuffer);
-			int leftD = getLeftDistance(&msgBuffer);
+			int msgCount = getCount(&msgBuffer);
+			int val1 = getVal1(&msgBuffer);
+			int val2 = getVal2(&msgBuffer);
+
 		
-			if (SendMapMsg(mapData,MapMessageTurn,radius,rightD,leftD,portMAX_DELAY) != pdTRUE) {
+			if (SendMapMsg(mapData,MapMessageMotor,msgCount,val1,val2,portMAX_DELAY) != pdTRUE) {
 						VT_HANDLE_FATAL_ERROR(0);
 					}
 			
@@ -211,8 +210,112 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 			}
 			break;
 		}
-		case vtI2CMsgTypeIRRead: {
-			sprintf(lcdBuffer,"Receiving IR");
+		case vtI2CMsgTypeIRRead1: {
+
+			int msgCount = getCount(&msgBuffer);
+			int val1 = getVal1(&msgBuffer);
+			int val2 = getVal2(&msgBuffer);
+
+			if(countStartIR1 == 0)
+			{
+				countStartIR1 = 1;
+				countIR1 = msgCount;
+			}
+			else{
+				if((countIR1 + 1) == msgCount)
+				{
+					countIR1 = msgCount;	
+				}
+				else{
+					sprintf(lcdBuffer,"Dropped IR1");
+					if (lcdData != NULL) {
+						if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,6,portMAX_DELAY) != pdTRUE) {
+							VT_HANDLE_FATAL_ERROR(0);
+						}
+					}
+					countIR1 = msgCount;
+				}
+			}
+
+			sprintf(lcdBuffer,"Receiving IR1");
+			if (lcdData != NULL) {
+				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,2,portMAX_DELAY) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+				}
+			}
+			//For now just send back a command to go straight
+			if (vtI2CEnQ(devPtr,vtI2CMsgTypeMotorRead,0x4F,sizeof(i2cCmdStraight),i2cCmdStraight,0) != pdTRUE) {
+				VT_HANDLE_FATAL_ERROR(0);
+			}
+			break;
+		}
+		case vtI2CMsgTypeIRRead2: {
+
+			int msgCount = getCount(&msgBuffer);
+			int val1 = getVal1(&msgBuffer);
+			int val2 = getVal2(&msgBuffer);
+
+			if(countStartIR2 == 0)
+			{
+				countStartIR2 = 1;
+				countIR2 = msgCount;
+			}
+			else{
+				if((countIR2 + 1) == msgCount)
+				{
+					countIR2 = msgCount;	
+				}
+				else{
+					sprintf(lcdBuffer,"Dropped IR2");
+					if (lcdData != NULL) {
+						if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,6,portMAX_DELAY) != pdTRUE) {
+							VT_HANDLE_FATAL_ERROR(0);
+						}
+					}
+					countIR2 = msgCount;
+				}
+			}
+
+			sprintf(lcdBuffer,"Receiving IR2");
+			if (lcdData != NULL) {
+				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,2,portMAX_DELAY) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+				}
+			}
+			//For now just send back a command to go straight
+			if (vtI2CEnQ(devPtr,vtI2CMsgTypeMotorRead,0x4F,sizeof(i2cCmdStraight),i2cCmdStraight,0) != pdTRUE) {
+				VT_HANDLE_FATAL_ERROR(0);
+			}
+			break;
+		}
+		case vtI2CMsgTypeIRRead3: {
+
+			int msgCount = getCount(&msgBuffer);
+			int val1 = getVal1(&msgBuffer);
+			int val2 = getVal2(&msgBuffer);
+
+			if(countStartIR3 == 0)
+			{
+				countStartIR3 = 1;
+				countIR3 = msgCount;
+			}
+			else{
+				if((countIR3 + 1) == msgCount)
+				{
+					countIR3 = msgCount;	
+				}
+				else{
+					sprintf(lcdBuffer,"Dropped IR3");
+					if (lcdData != NULL) {
+						if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,6,portMAX_DELAY) != pdTRUE) {
+							VT_HANDLE_FATAL_ERROR(0);
+						}
+					}
+					countIR3 = msgCount;
+				}
+			}
+
+			sprintf(lcdBuffer,"Receiving IR3");
 			if (lcdData != NULL) {
 				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,2,portMAX_DELAY) != pdTRUE) {
 					VT_HANDLE_FATAL_ERROR(0);
@@ -226,6 +329,10 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 		}
 		case vtI2CMsgTypeAccRead: {
 
+			int msgCount = getCount(&msgBuffer);
+			int val1 = getVal1(&msgBuffer);
+			int val2 = getVal2(&msgBuffer);
+
 			sprintf(lcdBuffer,"Receiving Acc");
 			if (lcdData != NULL) {
 				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,1,portMAX_DELAY) != pdTRUE) {
@@ -236,10 +343,30 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 			if (vtI2CEnQ(devPtr,vtI2CMsgTypeMotorSend,0x4F,sizeof(i2cCmdStraight),i2cCmdStraight,0) != pdTRUE) {
 				VT_HANDLE_FATAL_ERROR(0);
 			}
+			if(countStartAcc == 0)
+			{
+				countStartAcc = 1;
+				countAcc = msgCount;
+			}
+			else{
+				if((countAcc + 1) == msgCount)
+				{
+					countAcc = msgCount;	
+				}
+				else{
+					sprintf(lcdBuffer,"Dropped Acc");
+					if (lcdData != NULL) {
+						if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,6,portMAX_DELAY) != pdTRUE) {
+							VT_HANDLE_FATAL_ERROR(0);
+						}
+					}
+					countAcc = msgCount;
+				}
+			}
 			break;
 		}
 		case NavMsgTypeTimer: {
-			if (vtI2CEnQ(devPtr,NavMsgTypeTimer,0x4F,sizeof(i2cCmdReadVals),i2cCmdReadVals,7) != pdTRUE) {
+			if (vtI2CEnQ(devPtr,NavMsgTypeTimer,0x4F,sizeof(i2cCmdReadVals),i2cCmdReadVals,4) != pdTRUE) {
 				VT_HANDLE_FATAL_ERROR(0);
 			}
 			

@@ -325,8 +325,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../vtCode/vtUtilities.c</PathWithFileName>
       <FilenameWithoutPath>vtUtilities.c</FilenameWithoutPath>
@@ -337,10 +337,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>7</ColumnNumber>
+      <ColumnNumber>45</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>120</TopLine>
-      <CurrentLine>151</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/ParTest.c</PathWithFileName>
       <FilenameWithoutPath>ParTest.c</FilenameWithoutPath>
@@ -353,8 +353,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>142</TopLine>
-      <CurrentLine>152</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/LCDtask.c</PathWithFileName>
       <FilenameWithoutPath>LCDtask.c</FilenameWithoutPath>
@@ -367,8 +367,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>38</TopLine>
-      <CurrentLine>61</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/myTimers.c</PathWithFileName>
       <FilenameWithoutPath>myTimers.c</FilenameWithoutPath>
@@ -379,10 +379,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>12</ColumnNumber>
+      <ColumnNumber>33</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>80</TopLine>
-      <CurrentLine>96</CurrentLine>
+      <TopLine>74</TopLine>
+      <CurrentLine>93</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/conductor.c</PathWithFileName>
       <FilenameWithoutPath>conductor.c</FilenameWithoutPath>
@@ -393,9 +393,9 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>7</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>186</TopLine>
+      <TopLine>169</TopLine>
       <CurrentLine>190</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/navigation.c</PathWithFileName>
@@ -409,8 +409,8 @@
       <Focus>0</Focus>
       <ColumnNumber>3</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>131</TopLine>
-      <CurrentLine>131</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/mapping.c</PathWithFileName>
       <FilenameWithoutPath>mapping.c</FilenameWithoutPath>
@@ -689,8 +689,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/webserver/emac.c</PathWithFileName>
       <FilenameWithoutPath>emac.c</FilenameWithoutPath>
@@ -703,8 +703,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/webserver/httpd.c</PathWithFileName>
       <FilenameWithoutPath>httpd.c</FilenameWithoutPath>
@@ -717,8 +717,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/webserver/httpd-cgi.c</PathWithFileName>
       <FilenameWithoutPath>httpd-cgi.c</FilenameWithoutPath>
@@ -731,8 +731,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>73</TopLine>
-      <CurrentLine>73</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/webserver/httpd-fs.c</PathWithFileName>
       <FilenameWithoutPath>httpd-fs.c</FilenameWithoutPath>
@@ -745,8 +745,8 @@
       <Focus>0</Focus>
       <ColumnNumber>51</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>14</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/webserver/http-strings.c</PathWithFileName>
       <FilenameWithoutPath>http-strings.c</FilenameWithoutPath>
@@ -757,10 +757,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>22</ColumnNumber>
+      <ColumnNumber>21</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>232</TopLine>
-      <CurrentLine>262</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/webserver/uIP_Task.c</PathWithFileName>
       <FilenameWithoutPath>uIP_Task.c</FilenameWithoutPath>
@@ -773,8 +773,8 @@
       <Focus>0</Focus>
       <ColumnNumber>24</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>33</TopLine>
-      <CurrentLine>53</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../FreeRTOS/Demo/Common/ethernet/uIP/uip-1.0/uip/psock.c</PathWithFileName>
       <FilenameWithoutPath>psock.c</FilenameWithoutPath>
@@ -787,8 +787,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../FreeRTOS/Demo/Common/ethernet/uIP/uip-1.0/uip/timer.c</PathWithFileName>
       <FilenameWithoutPath>timer.c</FilenameWithoutPath>
@@ -801,8 +801,8 @@
       <Focus>0</Focus>
       <ColumnNumber>23</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>132</TopLine>
-      <CurrentLine>152</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../FreeRTOS/Demo/Common/ethernet/uIP/uip-1.0/uip/uip_arp.c</PathWithFileName>
       <FilenameWithoutPath>uip_arp.c</FilenameWithoutPath>
@@ -815,8 +815,8 @@
       <Focus>0</Focus>
       <ColumnNumber>48</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1681</TopLine>
-      <CurrentLine>1701</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../FreeRTOS/Demo/Common/ethernet/uIP/uip-1.0/uip/uip.c</PathWithFileName>
       <FilenameWithoutPath>uip.c</FilenameWithoutPath>
@@ -951,19 +951,19 @@
 
   <Group>
     <GroupName>I2C</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>9</GroupNumber>
       <FileNumber>49</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>70</ColumnNumber>
+      <ColumnNumber>19</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>305</TopLine>
-      <CurrentLine>316</CurrentLine>
+      <TopLine>298</TopLine>
+      <CurrentLine>312</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../vtCode/vtI2C/vtI2C.c</PathWithFileName>
       <FilenameWithoutPath>vtI2C.c</FilenameWithoutPath>
@@ -971,9 +971,9 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>C:\ARMCode\ARM\RTOSDemo\MAINFILES\MAPPING.H</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>12</CurrentLine>
+    <PathWithFilename>C:\ARMCode\ARM\RTOSDemo\MainFiles\navigation.h</PathWithFilename>
+    <TopLine>40</TopLine>
+    <CurrentLine>49</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -997,87 +997,9 @@
   </AlienFiles>
 
   <AlienFiles>
-    <PathWithFilename>C:\ARMCode\ARM\RTOSDemo\MAINFILES\NAVIGATION.H</PathWithFilename>
-    <TopLine>28</TopLine>
-    <CurrentLine>36</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>C:\ARMCode\ARM\RTOSDemo\MainFiles\conductor.h</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>4</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>C:\ARMCode\ARM\RTOSDemo\MAINFILES\I2CTASKMSGTYPES.H</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>12</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>C:\Users\ECE4534\Dropbox\ECE 4534\ARMCode\RTOSDemo\MainFiles\i2cTemp.c</PathWithFilename>
-    <TopLine>224</TopLine>
-    <CurrentLine>224</CurrentLine>
+    <PathWithFilename>C:\ARMCode\ARM\RTOSDemo\MainFiles\mapping.h</PathWithFilename>
+    <TopLine>29</TopLine>
+    <CurrentLine>38</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1108,148 +1030,40 @@
       <ActiveTab>1</ActiveTab>
       <Documents>
         <Doc>
-          <Name>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/ParTest.c</Name>
-          <ColumnNumber>45</ColumnNumber>
-          <TopLine>120</TopLine>
-          <CurrentLine>149</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/webserver/uIP_Task.c</Name>
-          <ColumnNumber>12</ColumnNumber>
-          <TopLine>226</TopLine>
-          <CurrentLine>252</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>../FreeRTOS/Demo/Common/ethernet/uIP/uip-1.0/uip/uip.c</Name>
-          <ColumnNumber>48</ColumnNumber>
-          <TopLine>1681</TopLine>
-          <CurrentLine>1701</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>../FreeRTOS/Demo/Common/ethernet/uIP/uip-1.0/uip/uip_arp.c</Name>
-          <ColumnNumber>23</ColumnNumber>
-          <TopLine>132</TopLine>
-          <CurrentLine>152</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>../FreeRTOS/Demo/Common/ethernet/uIP/uip-1.0/uip/timer.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>1</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>../FreeRTOS/Demo/Common/ethernet/uIP/uip-1.0/uip/psock.c</Name>
-          <ColumnNumber>24</ColumnNumber>
-          <TopLine>33</TopLine>
-          <CurrentLine>53</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/webserver/http-strings.c</Name>
-          <ColumnNumber>51</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>14</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/webserver/httpd-fs.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>73</TopLine>
-          <CurrentLine>73</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>../vtCode/vtI2C/vtI2C.c</Name>
-          <ColumnNumber>70</ColumnNumber>
-          <TopLine>305</TopLine>
-          <CurrentLine>316</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>C:\Users\ECE4534\Dropbox\ECE 4534\ARMCode\RTOSDemo\MainFiles\i2cTemp.c</Name>
-          <ColumnNumber>90</ColumnNumber>
-          <TopLine>224</TopLine>
-          <CurrentLine>224</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\MainFiles/conductor.c</Name>
-          <ColumnNumber>12</ColumnNumber>
-          <TopLine>80</TopLine>
-          <CurrentLine>96</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>C:\ARMCode\ARM\RTOSDemo\MAINFILES\I2CTASKMSGTYPES.H</Name>
-          <ColumnNumber>8</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>12</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\MainFiles/navigation.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>186</TopLine>
-          <CurrentLine>190</CurrentLine>
-        </Doc>
-        <Doc>
           <Name>.\MainFiles/main.c</Name>
           <ColumnNumber>26</ColumnNumber>
           <TopLine>218</TopLine>
           <CurrentLine>238</CurrentLine>
         </Doc>
         <Doc>
-          <Name>../vtCode/vtUtilities.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>1</CurrentLine>
+          <Name>.\MainFiles/navigation.c</Name>
+          <ColumnNumber>26</ColumnNumber>
+          <TopLine>169</TopLine>
+          <CurrentLine>190</CurrentLine>
         </Doc>
         <Doc>
-          <Name>.\MainFiles/mapping.c</Name>
-          <ColumnNumber>3</ColumnNumber>
-          <TopLine>131</TopLine>
-          <CurrentLine>131</CurrentLine>
+          <Name>.\MainFiles/conductor.c</Name>
+          <ColumnNumber>33</ColumnNumber>
+          <TopLine>74</TopLine>
+          <CurrentLine>93</CurrentLine>
         </Doc>
         <Doc>
-          <Name>C:\ARMCode\ARM\RTOSDemo\MainFiles\conductor.h</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>4</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\MainFiles/myTimers.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>38</TopLine>
-          <CurrentLine>61</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\MainFiles/LCDtask.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>142</TopLine>
-          <CurrentLine>152</CurrentLine>
+          <Name>../vtCode/vtI2C/vtI2C.c</Name>
+          <ColumnNumber>19</ColumnNumber>
+          <TopLine>298</TopLine>
+          <CurrentLine>312</CurrentLine>
         </Doc>
         <Doc>
           <Name>C:\ARMCode\ARM\RTOSDemo\MAINFILES\NAVIGATION.H</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>28</TopLine>
-          <CurrentLine>36</CurrentLine>
+          <ColumnNumber>105</ColumnNumber>
+          <TopLine>40</TopLine>
+          <CurrentLine>49</CurrentLine>
         </Doc>
         <Doc>
           <Name>C:\ARMCode\ARM\RTOSDemo\MAINFILES\MAPPING.H</Name>
-          <ColumnNumber>95</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>12</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/webserver/emac.c</Name>
           <ColumnNumber>0</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>1</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/webserver/httpd.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>1</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>../FreeRTOS/Demo/CORTEX_LPC1768_GCC_Rowley/webserver/httpd-cgi.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>1</CurrentLine>
+          <TopLine>29</TopLine>
+          <CurrentLine>38</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

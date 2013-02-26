@@ -10,19 +10,17 @@
 #define vtI2CMsgTypeMotorRead 53
 #define vtI2CMsgTypeMotorSend 52  //Command send to you
 #define vtI2CMsgTypeAccRead 54
-#define vtI2CMsgTypeIRRead 55
+#define vtI2CMsgTypeIRRead1 55	  //left IR sensor
+#define vtI2CMsgTypeIRRead2 56	  //center IR sensor
+#define vtI2CMsgTypeIRRead3 57	  //right IR sensor
 
 // below is not actually an i2c message, but the value is reserved
 #define NavMsgTypeTimer 3 
 #define SensorMsgTypeTimer 4 
-#define MapMessageTurn 5
-#define MapMessageWall 6
+#define MapMessageMotor 5
+#define MapMessageStateChange 6
 #define vtMsgTypeNavMsg	7
 #define testNavMsg 8
 
-#define motorCommand 52
-#define motorData 53
-#define accelerometer 54
-#define IRSensor 55
 
 #endif

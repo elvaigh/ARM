@@ -46,5 +46,5 @@ portBASE_TYPE SendNavTimerMsg(vtNavStruct *navData,portTickType ticksElapsed,por
 //   ticksToBlock -- how long the routine should wait if the queue is full
 // Return:
 //   Result of the call to xQueueSend()
-portBASE_TYPE SendNavMsg(vtNavStruct *navData,uint8_t msgType,uint8_t value,uint8_t radius,uint8_t rightDistance,uint8_t leftDistance,portTickType ticksToBlock);
+portBASE_TYPE SendNavMsg(vtNavStruct *navData,uint8_t msgType,uint8_t count,uint8_t value1,uint8_t value2,portTickType ticksToBlock);
 #endif

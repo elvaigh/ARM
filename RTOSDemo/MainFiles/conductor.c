@@ -57,10 +57,10 @@ static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 {
 	uint8_t rxLen, status;
 	uint8_t Buffer[vtI2CMLen];
-	uint8_t *valPtr = &(Buffer[0]);
-	uint8_t *raidPtr = &(Buffer[1]);
-	uint8_t *rightDPtr = &(Buffer[2]);
-	uint8_t *leftDPtr = &(Buffer[3]);
+	uint8_t *msgPtr = &(Buffer[0]);
+	uint8_t *countPtr = &(Buffer[1]);
+	uint8_t *val1Ptr = &(Buffer[2]);
+	uint8_t *val2Ptr = &(Buffer[3]);
 	// Get the parameters
 	vtConductorStruct *param = (vtConductorStruct *) pvParameters;
 	// Get the I2C device pointer
@@ -82,15 +82,23 @@ static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 		// This isn't a state machine, it is just acting as a router for messages
 		switch(recvMsgType) {
 		case vtI2CMsgTypeMotorRead: {
-			SendNavMsg(navData,recvMsgType,(*valPtr),(*raidPtr),(*rightDPtr),(*leftDPtr),portMAX_DELAY);
+			SendNavMsg(navData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
 			break;
 		}
 		case vtI2CMsgTypeAccRead: {
-			SendNavMsg(navData,recvMsgType,(*valPtr),(*raidPtr),0,0,portMAX_DELAY);
+			SendNavMsg(navData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
 			break;
 		}
-		case vtI2CMsgTypeIRRead: {
-			SendNavMsg(navData,recvMsgType,(*valPtr),(*raidPtr),0,0,portMAX_DELAY);
+		case vtI2CMsgTypeIRRead1: {
+			SendNavMsg(navData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
+			break;
+		}
+		case vtI2CMsgTypeIRRead2: {
+			SendNavMsg(navData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
+			break;
+		}
+		case vtI2CMsgTypeIRRead3: {
+			SendNavMsg(navData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
 			break;
 		}
 		default: {
