@@ -322,7 +322,7 @@ int getDR(int cPX, int cPY, int angle)
 // I2C commands for the Motor Encoder
 	uint8_t i2cCmdReadVals[]= {0xAA};
 	uint8_t i2cCmdDistance[] = {0x0A,0x00,0x00,0x00};
-	uint8_t i2cCmdFinish[] = {0x36,0x00,0x00,0x00};
+	uint8_t i2cCmdFinish[] = {0x36,0x00,0x00,0x25};
 // end of I2C command definitions
 
 

@@ -1977,3 +1977,167 @@ Load "C:\\ARMCode\\ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF"
 Full Chip Erase Done.
 Programming Done.
 Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'vNavUpdateTask':
+MainFiles/navigation.c(209): warning: unused variable 'val2'
+MainFiles/navigation.c(208): warning: unused variable 'val1'
+MainFiles/navigation.c(207): warning: unused variable 'msgCount'
+MainFiles/navigation.c(315): warning: unused variable 'val2'
+MainFiles/navigation.c(314): warning: unused variable 'val1'
+MainFiles/navigation.c(349): warning: unused variable 'val2'
+MainFiles/navigation.c(348): warning: unused variable 'val1'
+MainFiles/navigation.c(173): warning: unused variable 'mapData'
+MainFiles/navigation.c(161): warning: unused variable 'countMotor'
+MainFiles/navigation.c(157): warning: unused variable 'countStartMotor'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 10 Warning(s).
+Load "C:\\ARMCode\\ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'vNavUpdateTask':
+MainFiles/navigation.c(211): warning: unused variable 'val2'
+MainFiles/navigation.c(210): warning: unused variable 'val1'
+MainFiles/navigation.c(209): warning: unused variable 'msgCount'
+MainFiles/navigation.c(383): error: expected '}' before 'else'
+MainFiles/navigation.c(330): warning: unused variable 'val1'
+MainFiles/navigation.c(409): error: case label not within a switch statement
+MainFiles/navigation.c(413): warning: unused variable 'val2'
+MainFiles/navigation.c(412): warning: unused variable 'val1'
+MainFiles/navigation.c(464): error: case label not within a switch statement
+MainFiles/navigation.c(478): error: 'default' label not within a switch statement
+MainFiles/navigation.c(175): warning: unused variable 'mapData'
+MainFiles/navigation.c(163): warning: unused variable 'countMotor'
+MainFiles/navigation.c(159): warning: unused variable 'countStartMotor'
+MainFiles/navigation.c: At top level:
+MainFiles/navigation.c(487): error: expected identifier or '(' before '}' token
+Target not created
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'vNavUpdateTask':
+MainFiles/navigation.c(211): warning: unused variable 'val2'
+MainFiles/navigation.c(210): warning: unused variable 'val1'
+MainFiles/navigation.c(209): warning: unused variable 'msgCount'
+MainFiles/navigation.c(344): warning: "/*" within comment
+MainFiles/navigation.c(350): error: 'msgCount' undeclared (first use in this function)
+MainFiles/navigation.c(350): error: note: each undeclared identifier is reported only once for each function it appears in
+MainFiles/navigation.c(360): error: 'val2' undeclared (first use in this function)
+MainFiles/navigation.c(384): error: expected '}' before 'else'
+MainFiles/navigation.c(407): warning: extra tokens at end of #endif directive
+MainFiles/navigation.c(408): error: break statement not within loop or switch
+MainFiles/navigation.c(175): warning: unused variable 'mapData'
+MainFiles/navigation.c(171): warning: unused variable 'devPtr'
+MainFiles/navigation.c(163): warning: unused variable 'countMotor'
+MainFiles/navigation.c(162): warning: unused variable 'countAcc'
+MainFiles/navigation.c(161): warning: unused variable 'countStartFront'
+MainFiles/navigation.c(159): warning: unused variable 'countStartMotor'
+MainFiles/navigation.c(158): warning: unused variable 'countStartAcc'
+MainFiles/navigation.c: At top level:
+MainFiles/navigation.c(410): error: expected identifier or '(' before 'case'
+MainFiles/navigation.c(465): error: expected identifier or '(' before 'case'
+MainFiles/navigation.c(479): error: expected identifier or '(' before 'default'
+MainFiles/navigation.c(484): error: expected identifier or '(' before '}' token
+MainFiles/navigation.c(487): error: expected identifier or '(' before '}' token
+MainFiles/navigation.c(488): error: expected identifier or '(' before '}' token
+Target not created
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'vNavUpdateTask':
+MainFiles/navigation.c(211): warning: unused variable 'val2'
+MainFiles/navigation.c(210): warning: unused variable 'val1'
+MainFiles/navigation.c(209): warning: unused variable 'msgCount'
+MainFiles/navigation.c(383): error: expected '}' before 'else'
+MainFiles/navigation.c(330): warning: unused variable 'val1'
+MainFiles/navigation.c(409): error: case label not within a switch statement
+MainFiles/navigation.c(413): warning: unused variable 'val2'
+MainFiles/navigation.c(412): warning: unused variable 'val1'
+MainFiles/navigation.c(464): error: case label not within a switch statement
+MainFiles/navigation.c(478): error: 'default' label not within a switch statement
+MainFiles/navigation.c(175): warning: unused variable 'mapData'
+MainFiles/navigation.c(163): warning: unused variable 'countMotor'
+MainFiles/navigation.c(159): warning: unused variable 'countStartMotor'
+MainFiles/navigation.c: At top level:
+MainFiles/navigation.c(487): error: expected identifier or '(' before '}' token
+Target not created
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'vNavUpdateTask':
+MainFiles/navigation.c(211): warning: unused variable 'val2'
+MainFiles/navigation.c(210): warning: unused variable 'val1'
+MainFiles/navigation.c(209): warning: unused variable 'msgCount'
+MainFiles/navigation.c(330): warning: unused variable 'val1'
+MainFiles/navigation.c(413): warning: unused variable 'val2'
+MainFiles/navigation.c(412): warning: unused variable 'val1'
+MainFiles/navigation.c(175): warning: unused variable 'mapData'
+MainFiles/navigation.c(163): warning: unused variable 'countMotor'
+MainFiles/navigation.c(159): warning: unused variable 'countStartMotor'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 9 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'vNavUpdateTask':
+MainFiles/navigation.c(211): warning: unused variable 'val2'
+MainFiles/navigation.c(210): warning: unused variable 'val1'
+MainFiles/navigation.c(349): warning: unused variable 'val1'
+MainFiles/navigation.c(432): warning: unused variable 'val2'
+MainFiles/navigation.c(431): warning: unused variable 'val1'
+MainFiles/navigation.c(180): warning: unused variable 'lcdBuffer'
+MainFiles/navigation.c(175): warning: unused variable 'mapData'
+MainFiles/navigation.c(173): warning: unused variable 'lcdData'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 8 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'vNavUpdateTask':
+MainFiles/navigation.c(211): warning: unused variable 'val2'
+MainFiles/navigation.c(210): warning: unused variable 'val1'
+MainFiles/navigation.c(349): warning: unused variable 'val1'
+MainFiles/navigation.c(464): error: 'ACCELMIN' undeclared (first use in this function)
+MainFiles/navigation.c(464): error: note: each undeclared identifier is reported only once for each function it appears in
+MainFiles/navigation.c(180): warning: unused variable 'lcdBuffer'
+MainFiles/navigation.c(175): warning: unused variable 'mapData'
+MainFiles/navigation.c(173): warning: unused variable 'lcdData'
+Target not created
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'vNavUpdateTask':
+MainFiles/navigation.c(212): warning: unused variable 'val2'
+MainFiles/navigation.c(211): warning: unused variable 'val1'
+MainFiles/navigation.c(350): warning: unused variable 'val1'
+MainFiles/navigation.c(181): warning: unused variable 'lcdBuffer'
+MainFiles/navigation.c(176): warning: unused variable 'mapData'
+MainFiles/navigation.c(174): warning: unused variable 'lcdData'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 6 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'vNavUpdateTask':
+MainFiles/navigation.c(212): warning: unused variable 'val2'
+MainFiles/navigation.c(211): warning: unused variable 'val1'
+MainFiles/navigation.c(350): warning: unused variable 'val1'
+MainFiles/navigation.c(181): warning: unused variable 'lcdBuffer'
+MainFiles/navigation.c(176): warning: unused variable 'mapData'
+MainFiles/navigation.c(174): warning: unused variable 'lcdData'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 6 Warning(s).
+Load "C:\\ARMCode\\ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling testing.c...
+MainFiles/testing.c: In function 'vTestUpdateTask':
+MainFiles/testing.c(336): warning: unused variable 'countAcc'
+MainFiles/testing.c(333): warning: unused variable 'countStartAcc'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 2 Warning(s).
+Build target 'WebServerELF'
+compiling testing.c...
+MainFiles/testing.c: In function 'vTestUpdateTask':
+MainFiles/testing.c(336): warning: unused variable 'countAcc'
+MainFiles/testing.c(333): warning: unused variable 'countStartAcc'
+linking...
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 2 Warning(s).
