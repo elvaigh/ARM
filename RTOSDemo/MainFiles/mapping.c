@@ -127,17 +127,6 @@ static portTASK_FUNCTION( vMapUpdateTask, pvParameters )
 	// Buffer for receiving messages
 	vtMapMsg msgBuffer;
 
-	// Assumes that the I2C device (and thread) have already been initialized
-
-
-	#if PRINTGRAPH == 1
-	if (SendLCDLine(lcdData,30,200,320,200,portMAX_DELAY) != pdTRUE) {
-						VT_HANDLE_FATAL_ERROR(0);
- 	}
-	if (SendLCDLine(lcdData,30,10,30,200,portMAX_DELAY) != pdTRUE) {
-						VT_HANDLE_FATAL_ERROR(0);
- 	} 
-	#endif
 	  
 	// Like all good tasks, this should never exit
 	for(;;)
@@ -149,21 +138,12 @@ static portTASK_FUNCTION( vMapUpdateTask, pvParameters )
 
 		// Now, based on the type of the message and the state, we decide on the new state and action to take
 		switch(getMsgType(&msgBuffer)) {
-		case vtMsgTypeNavMsg: {
+		case MapMessageMotor: {
 
-			//Send a message to the map telling it what we got
 			int value = getValue(&msgBuffer);
 			int rightD = getRightDistance(&msgBuffer);
 			int leftD = getLeftDistance(&msgBuffer);
 		
-			
-			//sprintf(lcdBuffer,"Mapping");
-			sprintf(lcdBuffer,"Values are = %d, %d, %d",lrint(value),lrint(rightD),lrint(leftD));
-			if (lcdData != NULL) {
-				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,5,portMAX_DELAY) != pdTRUE) {
-					VT_HANDLE_FATAL_ERROR(0);
-				}
-			} 
 			break;
 		}
 		default: {

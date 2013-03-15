@@ -3,12 +3,14 @@
 #include "vtI2C.h"
 #include "navigation.h"
 #include "mapping.h"
+#include "distance.h"
 // Structure used to pass parameters to the task
 // Do not touch...
 typedef struct __ConductorStruct {
 	vtI2CStruct *dev;
 	vtNavStruct *navData;
 	vtMapStruct *mapData;
+	vtDistanceStruct *distanceData;
 } vtConductorStruct;
 
 // Public API
@@ -22,5 +24,5 @@ typedef struct __ConductorStruct {
 //   i2c: pointer to the data structure for an i2c task
 //   navigation: pointer to the data structure for an navigation task
 //	 mapping: pointer to the data structure for a mapping task
-void vStartConductorTask(vtConductorStruct *conductorData,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtNavStruct *navigation, vtMapStruct *mapping);
+void vStartConductorTask(vtConductorStruct *conductorData,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtNavStruct *navigation, vtMapStruct *mapping, vtDistanceStruct *distance);
 #endif

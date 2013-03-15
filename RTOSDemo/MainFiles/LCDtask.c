@@ -442,7 +442,7 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 			int x = getMsgX(&msgBuffer);
 			int y = getMsgY(&msgBuffer);
 
-			GLCD_ClearWindow(x,0,1,200,screenColor);
+			//GLCD_ClearWindow(x,0,1,200,screenColor);
 			GLCD_PutPixel(x,y);
 			
 			break;

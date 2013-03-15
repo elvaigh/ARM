@@ -41,4 +41,5 @@ ObjectFiles/conductor.o: MainFiles/conductor.c \
  ../FreeRTOS/Source/include/projDefs.h MainFiles/lcdTask.h \
  ../FreeRTOS/Source/include/queue.h ../FreeRTOS/Source/include/timers.h \
  MainFiles/navigation.h MainFiles/lcdTask.h MainFiles/mapping.h \
- MainFiles/I2CTaskMsgTypes.h MainFiles/conductor.h
+ MainFiles/testing.h MainFiles/distance.h MainFiles/I2CTaskMsgTypes.h \
+ MainFiles/conductor.h

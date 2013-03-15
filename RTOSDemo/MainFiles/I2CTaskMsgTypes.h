@@ -19,8 +19,15 @@
 #define SensorMsgTypeTimer 4 
 #define MapMessageMotor 5
 #define MapMessageStateChange 6
+
+//used for testing purposes
 #define vtMsgTypeNavMsg	7
 #define testNavMsg 8
+#define TestMsgTypeTimer 9
+
+//Strumsky to parse values from msg types 55-57 above into these
+#define DistanceMsg 10
+#define FrontValMsg 11
 
 
 #endif

@@ -2,7 +2,6 @@
 #define MAP_TASK_H
 #include "vtI2C.h"
 #include "lcdTask.h"
-#include "navigation.h"
 // Structure used to pass parameters to the task
 // Do not touch...
 typedef struct __MapStruct {

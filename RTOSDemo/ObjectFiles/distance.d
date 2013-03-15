@@ -1,4 +1,4 @@
-ObjectFiles/navigation.o: MainFiles/navigation.c \
+ObjectFiles/distance.o: MainFiles/distance.c \
  c:\program\ files\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/include/stdlib.h \
  c:\program\ files\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/include/machine/ieeefp.h \
  c:\program\ files\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/include/_ansi.h \
@@ -40,5 +40,5 @@ ObjectFiles/navigation.o: MainFiles/navigation.c \
  ../NXPDrivers/include/lpc17xx_i2c.h ../NXPDrivers/include/lpc_types.h \
  ../FreeRTOS/Source/include/projDefs.h MainFiles/lcdTask.h \
  ../FreeRTOS/Source/include/queue.h ../FreeRTOS/Source/include/timers.h \
- MainFiles/LCDtask.h MainFiles/navigation.h MainFiles/lcdTask.h \
- MainFiles/mapping.h MainFiles/testing.h MainFiles/I2CTaskMsgTypes.h
+ MainFiles/LCDtask.h MainFiles/I2CTaskMsgTypes.h MainFiles/distance.h \
+ MainFiles/lcdTask.h

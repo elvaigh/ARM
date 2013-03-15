@@ -3,12 +3,14 @@
 #include "vtI2C.h"
 #include "lcdTask.h"
 #include "mapping.h"
+#include "testing.h"
 // Structure used to pass parameters to the task
 // Do not touch...
 typedef struct __NavStruct {
 	vtI2CStruct *dev;
 	vtLCDStruct *lcdData;
 	vtMapStruct *mapData;
+	vtTestStruct *testData;
 	xQueueHandle inQ;
 } vtNavStruct;
 // Maximum length of a message that can be received by this task
@@ -23,7 +25,7 @@ typedef struct __NavStruct {
 //   i2c: pointer to the data structure for an i2c task
 //   lcd: pointer to the data structure for an LCD task (may be NULL)
 //   map: pointer to the data structure for a map task
-void vStartNavTask(vtNavStruct *navData,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtLCDStruct *lcd,vtMapStruct *map);
+void vStartNavTask(vtNavStruct *navData,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtLCDStruct *lcd,vtMapStruct *map,vtTestStruct *test);
 //
 // Send a timer message to the Navigation task
 // Args:

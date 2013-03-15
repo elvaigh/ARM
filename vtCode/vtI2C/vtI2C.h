@@ -54,6 +54,18 @@ int vtI2CInit(vtI2CStruct *devPtr,uint8_t i2cDevNum,unsigned portBASE_TYPE taskP
 //   Result of the call to xQueueSend()
 portBASE_TYPE vtI2CEnQ(vtI2CStruct *dev,uint8_t msgType,uint8_t slvAddr,uint8_t txLen,const uint8_t *txBuf,uint8_t rxLen);
 
+// A simple routine to use for filling out and sending a message to the Conductor thread
+// Args
+//   dev: pointer to the vtI2CStruct data structure
+//   msgType: The message type value -- does not get sent on the wire, but is included in the response in the message queue
+//   slvAddr: The address of the i2c slave device you are addressing
+//   txLen: The number of bytes you want to send
+//   txBuf: The buffer holding the bytes you want to send
+//   rxLen: The number of bytes that you would like to receive
+// Return:
+//   Result of the call to xQueueSend()
+portBASE_TYPE vtI2CConQ(vtI2CStruct *dev,uint8_t msgType,uint8_t slvAddr,uint8_t txLen,const uint8_t *txBuf,uint8_t rxLen);
+
 // A simple routine to use for retrieving a message from the I2C thread
 // Args
 //   dev: pointer to the vtI2CStruct data structure

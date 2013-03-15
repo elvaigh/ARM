@@ -14,6 +14,7 @@
 #include "vtI2C.h"
 #include "navigation.h"
 #include "mapping.h"
+#include "distance.h"
 #include "I2CTaskMsgTypes.h"
 #include "conductor.h"
 
@@ -37,13 +38,14 @@ static portTASK_FUNCTION_PROTO( vConductorUpdateTask, pvParameters );
 
 /*-----------------------------------------------------------*/
 // Public API
-void vStartConductorTask(vtConductorStruct *params,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtNavStruct *navigation, vtMapStruct *mapping)
+void vStartConductorTask(vtConductorStruct *params,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtNavStruct *navigation, vtMapStruct *mapping, vtDistanceStruct *distance)
 {
 	/* Start the task */
 	portBASE_TYPE retval;
 	params->dev = i2c;
 	params->navData = navigation;
 	params->mapData = mapping;
+	params->distanceData = distance;
 	if ((retval = xTaskCreate( vConductorUpdateTask, ( signed char * ) "Conductor", conSTACK_SIZE, (void *) params, uxPriority, ( xTaskHandle * ) NULL )) != pdPASS) {
 		VT_HANDLE_FATAL_ERROR(retval);
 	}
@@ -69,6 +71,9 @@ static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 	vtNavStruct *navData = param->navData;
 	// Get the map information pointer
 	vtMapStruct *mapData = param->mapData;
+	// Get the distance information pointer
+	vtDistanceStruct *distanceData = param->distanceData;
+
 	uint8_t recvMsgType;
 
 	// Like all good tasks, this should never exit
@@ -90,15 +95,23 @@ static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 			break;
 		}
 		case vtI2CMsgTypeIRRead1: {
-			SendNavMsg(navData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
+			SendDistanceMsg(distanceData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
 			break;
 		}
 		case vtI2CMsgTypeIRRead2: {
-			SendNavMsg(navData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
+			SendDistanceMsg(distanceData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
 			break;
 		}
 		case vtI2CMsgTypeIRRead3: {
-			SendNavMsg(navData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
+			SendDistanceMsg(distanceData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
+			break;
+		}
+		case DistanceMsg: {
+			 SendNavMsg(navData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
+			break;
+		}
+		case FrontValMsg: {
+			 SendNavMsg(navData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
 			break;
 		}
 		default: {

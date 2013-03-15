@@ -366,6 +366,11 @@
               <FileType>1</FileType>
               <FilePath>.\MainFiles/mapping.c</FilePath>
             </File>
+            <File>
+              <FileName>testing.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MainFiles/testing.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -170,51 +170,29 @@ portBASE_TYPE vtI2CEnQ(vtI2CStruct *dev,uint8_t msgType,uint8_t slvAddr,uint8_t 
 	for (i=0;i<msgBuf.txLen;i++) {
 		msgBuf.buf[i] = txBuf[i];
 	}
-	#if TESTSEND == 0
 	return(xQueueSend(dev->inQ,(void *) (&msgBuf),portMAX_DELAY));
+}
 
-	#else
-	// String buffer for printing
-	char lcdBuffer[vtLCDMaxLen+1];
-	
-	sprintf(lcdBuffer,"Sending");
-	if (lcdP != NULL) {
-		if (SendLCDPrintMsg(lcdP,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,0,portMAX_DELAY) != pdTRUE) {
-			VT_HANDLE_FATAL_ERROR(0);
-		}
-	}
+// A simple routine to use for filling out and sending a message to the Conductor
+portBASE_TYPE vtI2CConQ(vtI2CStruct *dev,uint8_t msgType,uint8_t slvAddr,uint8_t txLen,const uint8_t *txBuf,uint8_t rxLen)
+{
+	vtI2CMsg msgBuf;
+	int i;
 
-	sprintf(lcdBuffer,"MsgType: %d",msgType);
-	if (lcdP != NULL) {
-		if (SendLCDPrintMsg(lcdP,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,1,portMAX_DELAY) != pdTRUE) {
-			VT_HANDLE_FATAL_ERROR(0);
-		}
+    msgBuf.slvAddr = slvAddr;
+	msgBuf.msgType = msgType;
+	msgBuf.rxLen = rxLen;
+	if (msgBuf.rxLen > vtI2CMLen) {
+		VT_HANDLE_FATAL_ERROR(0);
 	}
-
-	sprintf(lcdBuffer,"Addr: %d",slvAddr);
-	if (lcdP != NULL) {
-		if (SendLCDPrintMsg(lcdP,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,2,portMAX_DELAY) != pdTRUE) {
-			VT_HANDLE_FATAL_ERROR(0);
-		}
+	msgBuf.txLen = txLen;
+	if (msgBuf.txLen > vtI2CMLen) {
+		VT_HANDLE_FATAL_ERROR(0);
 	}
-
-	sprintf(lcdBuffer,"Msg:%d,%d",txBuf[0],txBuf[1]);
-	if (lcdP != NULL) {
-		if (SendLCDPrintMsg(lcdP,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,3,portMAX_DELAY) != pdTRUE) {
-			VT_HANDLE_FATAL_ERROR(0);
-		}
+	for (i=0;i<msgBuf.txLen;i++) {
+		msgBuf.buf[i] = txBuf[i];
 	}
-	if(msgBuf.msgType == 8)
-	{
-		msgBuf.msgType = 1;
-		return(xQueueSend(dev->outQ,(void *) (&msgBuf),portMAX_DELAY));
-	}  
-	if(msgBuf.msgType == 3)
-	{
-		msgBuf.msgType = 2;
-		return(xQueueSend(dev->outQ,(void *) (&msgBuf),portMAX_DELAY));
-	} 
-	#endif
+	return(xQueueSend(dev->outQ,(void *) (&msgBuf),portMAX_DELAY));
 }
 
 // A simple routine to use for retrieving a message from the I2C thread
@@ -232,8 +210,7 @@ portBASE_TYPE vtI2CDeQ(vtI2CStruct *dev,uint8_t maxRxLen,uint8_t *rxBuf,uint8_t 
 	for (i=0;i<msgBuf.rxLen;i++) {
 		rxBuf[i] = msgBuf.buf[i];
 	}
-	(*msgType) = msgBuf.msgType;
-		
+	(*msgType) = msgBuf.msgType;	
 
 	return(pdTRUE);
 }
@@ -311,9 +288,9 @@ static portTASK_FUNCTION( vI2CMonitorTask, pvParameters )
 		}
 		msgBuffer.msgType = msgBuffer.buf[0];
 		/*char lcdBuffer[vtLCDMaxLen+1];
-		sprintf(lcdBuffer,"Msg:%d",msgBuffer.msgType);
+		sprintf(lcdBuffer,"%d:%d:%d:%d",msgBuffer.msgType,msgBuffer.buf[1],msgBuffer.buf[2],msgBuffer.buf[3]);
 		if (lcdP != NULL) {
-			if (SendLCDPrintMsg(lcdP,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,3,portMAX_DELAY) != pdTRUE) {
+			if (SendLCDPrintMsg(lcdP,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,8,portMAX_DELAY) != pdTRUE) {
 				VT_HANDLE_FATAL_ERROR(0);
 			}
 		}*/

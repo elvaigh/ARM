@@ -41,4 +41,4 @@ ObjectFiles/mapping.o: MainFiles/mapping.c \
  ../FreeRTOS/Source/include/projDefs.h MainFiles/lcdTask.h \
  ../FreeRTOS/Source/include/queue.h ../FreeRTOS/Source/include/timers.h \
  MainFiles/LCDtask.h MainFiles/navigation.h MainFiles/lcdTask.h \
- MainFiles/mapping.h MainFiles/I2CTaskMsgTypes.h
+ MainFiles/mapping.h MainFiles/testing.h MainFiles/I2CTaskMsgTypes.h
