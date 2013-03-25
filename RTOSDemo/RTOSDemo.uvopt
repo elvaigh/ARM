@@ -309,10 +309,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>24</ColumnNumber>
+      <ColumnNumber>99</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>150</TopLine>
-      <CurrentLine>160</CurrentLine>
+      <TopLine>206</TopLine>
+      <CurrentLine>206</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -325,8 +325,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>129</TopLine>
-      <CurrentLine>129</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../vtCode/vtUtilities.c</PathWithFileName>
       <FilenameWithoutPath>vtUtilities.c</FilenameWithoutPath>
@@ -365,10 +365,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>1</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>5</TopLine>
-      <CurrentLine>13</CurrentLine>
+      <TopLine>57</TopLine>
+      <CurrentLine>62</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/myTimers.c</PathWithFileName>
       <FilenameWithoutPath>myTimers.c</FilenameWithoutPath>
@@ -377,12 +377,12 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>11</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>4</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>59</TopLine>
+      <CurrentLine>76</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/conductor.c</PathWithFileName>
       <FilenameWithoutPath>conductor.c</FilenameWithoutPath>
@@ -393,10 +393,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>20</ColumnNumber>
+      <ColumnNumber>29</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>39</TopLine>
-      <CurrentLine>45</CurrentLine>
+      <TopLine>321</TopLine>
+      <CurrentLine>343</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/navigation.c</PathWithFileName>
       <FilenameWithoutPath>navigation.c</FilenameWithoutPath>
@@ -421,13 +421,27 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>32</ColumnNumber>
+      <ColumnNumber>3</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>71</TopLine>
-      <CurrentLine>81</CurrentLine>
+      <TopLine>995</TopLine>
+      <CurrentLine>1010</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/testing.c</PathWithFileName>
       <FilenameWithoutPath>testing.c</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>0</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>56</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>48</TopLine>
+      <CurrentLine>48</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\MainFiles/distance.c</PathWithFileName>
+      <FilenameWithoutPath>distance.c</FilenameWithoutPath>
     </File>
   </Group>
 
@@ -987,7 +1001,7 @@
   <AlienFiles>
     <PathWithFilename>C:\ARMCODE\ARM\RTOSDEMO\MAINFILES\TESTING.H</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>2</CurrentLine>
+    <CurrentLine>16</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1012,8 +1026,8 @@
 
   <AlienFiles>
     <PathWithFilename>C:\ARMCode\ARM\RTOSDemo\MAINFILES\I2CTASKMSGTYPES.H</PathWithFilename>
-    <TopLine>3</TopLine>
-    <CurrentLine>12</CurrentLine>
+    <TopLine>1</TopLine>
+    <CurrentLine>1</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1038,34 +1052,8 @@
 
   <AlienFiles>
     <PathWithFilename>C:\ARMCode\ARM\RTOSDemo\MainFiles\distance.h</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>20</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>C:\ARMCode\ARM\RTOSDemo\MainFiles\distance.c</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>1</CurrentLine>
+    <TopLine>41</TopLine>
+    <CurrentLine>52</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1114,13 +1102,63 @@
     </WindowPosition>
   </AlienFiles>
 
+  <AlienFiles>
+    <PathWithFilename>C:\ARMCode\ARM\RTOSDemo\MainFiles\conductor.h</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>1</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
   <MDIGroups>
     <Orientation>1</Orientation>
     <ActiveMDIGroup>0</ActiveMDIGroup>
     <MDIGroup>
       <Size>100</Size>
-      <ActiveTab>3</ActiveTab>
+      <ActiveTab>1</ActiveTab>
       <Documents>
+        <Doc>
+          <Name>.\MainFiles/testing.c</Name>
+          <ColumnNumber>3</ColumnNumber>
+          <TopLine>995</TopLine>
+          <CurrentLine>1010</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\MainFiles/main.c</Name>
+          <ColumnNumber>99</ColumnNumber>
+          <TopLine>243</TopLine>
+          <CurrentLine>243</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>C:\ARMCode\ARM\RTOSDemo\MainFiles\conductor.h</Name>
+          <ColumnNumber>183</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>1</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\MainFiles/conductor.c</Name>
+          <ColumnNumber>4</ColumnNumber>
+          <TopLine>59</TopLine>
+          <CurrentLine>76</CurrentLine>
+        </Doc>
         <Doc>
           <Name>C:\ARMCode\ARM\RTOSDemo\MAINFILES\NAVIGATION.H</Name>
           <ColumnNumber>14</ColumnNumber>
@@ -1129,33 +1167,27 @@
         </Doc>
         <Doc>
           <Name>.\MainFiles/navigation.c</Name>
-          <ColumnNumber>20</ColumnNumber>
-          <TopLine>39</TopLine>
-          <CurrentLine>45</CurrentLine>
+          <ColumnNumber>29</ColumnNumber>
+          <TopLine>321</TopLine>
+          <CurrentLine>343</CurrentLine>
         </Doc>
         <Doc>
-          <Name>C:\ARMCode\ARM\RTOSDemo\MainFiles\distance.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>1</CurrentLine>
+          <Name>.\MainFiles/distance.c</Name>
+          <ColumnNumber>56</ColumnNumber>
+          <TopLine>48</TopLine>
+          <CurrentLine>48</CurrentLine>
         </Doc>
         <Doc>
-          <Name>C:\ARMCode\ARM\RTOSDemo\MainFiles\distance.h</Name>
-          <ColumnNumber>13</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>20</CurrentLine>
+          <Name>C:\ARMCode\ARM\RTOSDemo\MAINFILES\DISTANCE.H</Name>
+          <ColumnNumber>63</ColumnNumber>
+          <TopLine>41</TopLine>
+          <CurrentLine>52</CurrentLine>
         </Doc>
         <Doc>
           <Name>C:\ARMCODE\ARM\RTOSDEMO\MAINFILES\TESTING.H</Name>
-          <ColumnNumber>28</ColumnNumber>
+          <ColumnNumber>17</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>2</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\MainFiles/testing.c</Name>
-          <ColumnNumber>32</ColumnNumber>
-          <TopLine>71</TopLine>
-          <CurrentLine>81</CurrentLine>
+          <CurrentLine>16</CurrentLine>
         </Doc>
         <Doc>
           <Name>../vtCode/vtI2C/vtI2C.c</Name>
@@ -1165,21 +1197,15 @@
         </Doc>
         <Doc>
           <Name>C:\ARMCode\ARM\RTOSDemo\MAINFILES\I2CTASKMSGTYPES.H</Name>
-          <ColumnNumber>8</ColumnNumber>
-          <TopLine>3</TopLine>
-          <CurrentLine>12</CurrentLine>
+          <ColumnNumber>13</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>1</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\MainFiles/myTimers.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>5</TopLine>
-          <CurrentLine>13</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\MainFiles/main.c</Name>
-          <ColumnNumber>24</ColumnNumber>
-          <TopLine>150</TopLine>
-          <CurrentLine>160</CurrentLine>
+          <ColumnNumber>1</ColumnNumber>
+          <TopLine>57</TopLine>
+          <CurrentLine>62</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

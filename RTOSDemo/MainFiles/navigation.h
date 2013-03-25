@@ -25,7 +25,16 @@ typedef struct __NavStruct {
 //   i2c: pointer to the data structure for an i2c task
 //   lcd: pointer to the data structure for an LCD task (may be NULL)
 //   map: pointer to the data structure for a map task
-void vStartNavTask(vtNavStruct *navData,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtLCDStruct *lcd,vtMapStruct *map,vtTestStruct *test);
+void vStartNavTaskT(vtNavStruct *navData,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtLCDStruct *lcd,vtMapStruct *map,vtTestStruct *test);
+//
+// Start the task
+// Args:
+//   navData: Data structure used by the task
+//   uxPriority -- the priority you want this task to be run at
+//   i2c: pointer to the data structure for an i2c task
+//   lcd: pointer to the data structure for an LCD task (may be NULL)
+//   map: pointer to the data structure for a map task
+void vStartNavTask(vtNavStruct *navData,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtLCDStruct *lcd,vtMapStruct *map);
 //
 // Send a timer message to the Navigation task
 // Args:

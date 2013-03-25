@@ -80,6 +80,8 @@
 #include "task.h"
 #include "system_LPC17xx.h"
 
+#define TESTING 0
+
 #ifndef   PCONP_PCTIM0
 /* MTJ_NOTE: This will not compile properly if you do not delete the old version of */
 /*       system_LPC17xx.h from the Keil compiler installation */
@@ -270,7 +272,12 @@ int main( void )
 		VT_HANDLE_FATAL_ERROR(0);
 	}
 	//Start up the task that is going to handle the navigation
-	vStartNavTask(&navData,mainNAV_TASK_PRIORITY,&vtI2C0,&vtLCDdata,&mapData,&vtTestData);
+	#if TESTING == 1
+	vStartNavTaskT(&navData,mainNAV_TASK_PRIORITY,&vtI2C0,&vtLCDdata,&mapData,&vtTestData);
+	#else
+	vStartNavTask(&navData,mainNAV_TASK_PRIORITY,&vtI2C0,&vtLCDdata,&mapData);
+	#endif
+
 	// starts a navigation timer that will send messages to the Navigation task. The timer will determine how often the data is sampled.
 	startTimerForNav(&navData);
 	//starts the distance task

@@ -21,7 +21,7 @@
 // Functions for the Temperature Task related timer
 //
 // how often the timer that sends messages to the temp task should run
-// Set the task up to run every 200 ms
+// Set the task up to run every 100 ms
 
 #define nav_RATE_BASE	( ( portTickType ) 50 / portTICK_RATE_MS)
 

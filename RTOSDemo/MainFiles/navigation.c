@@ -23,10 +23,11 @@
 // Length of the queue to this task
 #define vtNavQLen 20 
 
-#define SAFEZONE 8
-#define FRONTLARGE 10
-#define FRONTSMALL 5
-#define ACCELMIN 15
+#define SAFEZONE 8	       // 8 cm
+#define FRONTLARGE 10	   //10 cm
+#define FRONTSMALL 5	   // 5 cm
+#define ACCELMIN 15		   //Need to change based on real world accelerator values
+#define ACCEPTABLEMISS 20  //1 second
 
 // actual data structure that is sent in a message
 typedef struct __vtNavMsg {
@@ -56,7 +57,7 @@ static portTASK_FUNCTION_PROTO( vNavUpdateTask, pvParameters );
 
 /*-----------------------------------------------------------*/
 // Public API
-void vStartNavTask(vtNavStruct *params,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtLCDStruct *lcd, vtMapStruct *map, vtTestStruct *test)
+void vStartNavTaskT(vtNavStruct *params,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtLCDStruct *lcd, vtMapStruct *map, vtTestStruct *test)
 {
 	// Create the queue that will be used to talk to this task
 	if ((params->inQ = xQueueCreate(vtNavQLen,sizeof(vtNavMsg))) == NULL) {
@@ -68,6 +69,22 @@ void vStartNavTask(vtNavStruct *params,unsigned portBASE_TYPE uxPriority, vtI2CS
 	params->lcdData = lcd;
 	params->mapData = map;
 	params->testData = test;
+	if ((retval = xTaskCreate( vNavUpdateTask, ( signed char * ) "Navigation", i2cSTACK_SIZE, (void *) params, uxPriority, ( xTaskHandle * ) NULL )) != pdPASS) {
+		VT_HANDLE_FATAL_ERROR(retval);
+	}
+}
+
+void vStartNavTask(vtNavStruct *params,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtLCDStruct *lcd, vtMapStruct *map)
+{
+	// Create the queue that will be used to talk to this task
+	if ((params->inQ = xQueueCreate(vtNavQLen,sizeof(vtNavMsg))) == NULL) {
+		VT_HANDLE_FATAL_ERROR(0);
+	}
+	/* Start the task */
+	portBASE_TYPE retval;
+	params->dev = i2c;
+	params->lcdData = lcd;
+	params->mapData = map;
 	if ((retval = xTaskCreate( vNavUpdateTask, ( signed char * ) "Navigation", i2cSTACK_SIZE, (void *) params, uxPriority, ( xTaskHandle * ) NULL )) != pdPASS) {
 		VT_HANDLE_FATAL_ERROR(retval);
 	}
@@ -141,8 +158,9 @@ uint8_t getVal2(vtNavMsg *Buffer)
 
 // I2C commands for the Motor Encoder
 	uint8_t i2cCmdReadVals[]= {0xAA};
-	uint8_t i2cCmdStraight[]= {0x34,0x00,0x01,0x00};
-	uint8_t i2cCmdTurn[]= {0x34,0x00,0x01,0x00};
+	//John change the speed here
+	uint8_t i2cCmdStraight[]= {0x34,0x00,0x1E,0x00};
+	uint8_t i2cCmdTurn[]= {0x34,0x00,0x1E,0x00};
 	uint8_t i2cCmdHault[] = {0x34,0x00,0x00,0x00};
 // end of I2C command definitions
 
@@ -165,6 +183,10 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 	uint8_t countMotorCommand = 0;
 	uint8_t countDistance = 0;
 	uint8_t countFront = 0;
+
+	//counts for missed messages
+	uint8_t missedMotor = 0;
+	uint8_t missedDistance = 0;
 
 	// Get the parameters
 	vtNavStruct *param = (vtNavStruct *) pvParameters;
@@ -206,12 +228,13 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 		switch(getMsgType(&msgBuffer)) {
 		case vtI2CMsgTypeMotorRead: {
 
-			//Send a message to the map telling it what we got
+			
 			int msgCount = getCount(&msgBuffer);
 			int val1 = getVal1(&msgBuffer);
 			int val2 = getVal2(&msgBuffer);
 
-		
+			missedMotor = 0;
+			//Send a message to the map telling it what we got
 			/*if (SendMapMsg(mapData,MapMessageMotor,msgCount,val1,val2,portMAX_DELAY) != pdTRUE) {
 						VT_HANDLE_FATAL_ERROR(0);
 					} */
@@ -235,6 +258,26 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 					countMotor = msgCount;
 				}
 			}
+			sprintf(lcdBuffer,"Receiving M");
+			if (lcdData != NULL) {
+				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,0,portMAX_DELAY) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+				}
+			}
+			#if TESTING == 0
+			//For now just send back a command to go straight
+			//John you can fake a turn here by changing i2cCmdStraight to i2cCmdTurn and setting i2cCmdTurn [2] to your value
+			if (vtI2CEnQ(devPtr,vtI2CMsgTypeMotorSend,0x4F,sizeof(i2cCmdStraight),i2cCmdStraight,0) != pdTRUE) {
+				VT_HANDLE_FATAL_ERROR(0);
+			}
+			#else
+			//For now just send back a command to go straight
+			//Currently sensors work in testing but not in real so resopond to motor in real
+
+			/*if (vtTestEnQ(testData,vtI2CMsgTypeMotorSend,0x4F,sizeof(i2cCmdStraight),i2cCmdStraight,0) != pdTRUE) {
+				VT_HANDLE_FATAL_ERROR(0);
+			}*/
+			#endif
 			/*sprintf(lcdBuffer,"Receiving Motor");
 			if (lcdData != NULL) {
 				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,0,portMAX_DELAY) != pdTRUE) {
@@ -248,6 +291,8 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 			int msgCount = getCount(&msgBuffer);
 			int val1 = getVal1(&msgBuffer);
 			int val2 = getVal2(&msgBuffer);
+
+			missedDistance = 0;
 			if(countStartDistance == 0)
 			{
 				countStartDistance = 1;
@@ -281,27 +326,23 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 			{
 				distanceF = (float)(val1-val2)/(float)(val1+val2);
 				//set response
-				//0 for straight
-				//10 for small left (15-100) cm
-				//11 for hard left (<15) cm
-				//20 for small right (15-100) cm
-				//21 for hard right (<15) cm
 				// 0 = straight
 				// 127 = spin left
 				// 128 = spin right
-				// anything between 0 and 127 = turn left with a turn radius of (127 - val2)
+				// anything between 0 and 127 = turn left with a turn radius of (val2)
 				// anything between 128 and 255 = turn right with a turn radius of (val2 - 128)
 	
-				//hard Left (127-10cm radius) = 117
+				//John actual turning here
+				//hard Left (0 + 10cm radius) = 5
 				if(distanceF > 0.4)
 				{
-					i2cCmdTurn[3] = 117;
+					i2cCmdTurn[3] = 5;
 					lastTurn = 0;
 				}
-				//small Left (127-20cm radius) = 107
+				//small Left (0 + 20cm radius) = 10
 				else if(distanceF > 0)
 				{
-					i2cCmdTurn[3] = 107;
+					i2cCmdTurn[3] = 10;
 					lastTurn = 0;
 				}
 				//0 = straight
@@ -309,16 +350,16 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 				{
 					i2cCmdTurn[3] = 0;
 				}
-				//hard Right (128+10cm radius) = 138
+				//hard Right (128+5cm radius) = 133
 				else if(distanceF < -0.4)
 				{
-					i2cCmdTurn[3] = 138;
+					i2cCmdTurn[3] = 133;
 					lastTurn = 1;
 				}
-				//small right (128+20cm radius) = 148
+				//small right (128+10cm radius) = 138
 				else
 				{
-					i2cCmdTurn[3] = 148;
+					i2cCmdTurn[3] = 138;
 					lastTurn = 1;
 				}
 			}
@@ -486,10 +527,34 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 			break;
 		}
 		case NavMsgTypeTimer: {
+			#if TESTING == 0
 			if (vtI2CEnQ(devPtr,NavMsgTypeTimer,0x4F,sizeof(i2cCmdReadVals),i2cCmdReadVals,4) != pdTRUE) {
 				VT_HANDLE_FATAL_ERROR(0);
 			}
+			#else
+			//For now just send back a command to go straight
+			if (vtTestEnQ(testData,NavMsgTypeTimer,0x4F,sizeof(i2cCmdReadVals),i2cCmdReadVals,4) != pdTRUE) {
+				VT_HANDLE_FATAL_ERROR(0);
+			}
+			#endif
+			missedMotor++;
+			missedDistance++;
+			//if so long since message received hault
+			/*if((missedMotor > ACCEPTABLEMISS) || (missedDistance > ACCEPTABLEMISS))
+			{
+				#if TESTING == 0
+				//For now just send back a command to go straight
+				if (vtI2CEnQ(devPtr,vtI2CMsgTypeMotorSend,0x4F,sizeof(i2cCmdHault),i2cCmdHault,0) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+				}
+				#else
+				//For now just send back a command to go straight
+				if (vtTestEnQ(testData,vtI2CMsgTypeMotorSend,0x4F,sizeof(i2cCmdHault),i2cCmdHault,0) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+				}
+				#endif
 			
+			}  */
 			/*sprintf(lcdBuffer,"Timer Messages");
 			if (lcdData != NULL) {
 				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,6,portMAX_DELAY) != pdTRUE) {
@@ -500,7 +565,7 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 			break;
 		}
 		default: {
-			printf("invalid data type");
+			//printf("invalid data type");
 			VT_HANDLE_FATAL_ERROR(getMsgType(&msgBuffer));
 			break;
 		}

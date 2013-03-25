@@ -13,7 +13,7 @@ typedef struct __TestStruct {
 // Maximum length of a message that can be received by this task
 #define vtTestMaxLen   (sizeof(portTickType))
 
-#define TESTING 1
+#define TESTING 0
 
 // Public API
 //

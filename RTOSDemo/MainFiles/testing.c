@@ -50,8 +50,8 @@ typedef struct __vtTestI2CMsg {
 
 //can change to place the car in different starting point
 #define CARSTARTX 160
-#define CARSTARTY 240
-#define CARSTARTANGLE 0
+#define CARSTARTY 230
+#define CARSTARTANGLE 90
 
 //chose the type of course
 #define TESTSTRAIGHT 0
@@ -61,7 +61,7 @@ typedef struct __vtTestI2CMsg {
 #define TESTINTERSECTION 0
 #define TESTLEFTBRANCH 0
 
-#if((TESTSTRAIGHT == 1)||(TESTINTERSECTION == 1))
+#if((TESTSTRAIGHT == 1)||(TESTINTERSECTION == 1) || (TESTSPACERIGHT == 1))
 #define MAXLEFT 100
 #define MAXRIGHT 100
 #define FINWIDTH 17
@@ -335,6 +335,8 @@ static portTASK_FUNCTION( vTestUpdateTask, pvParameters )
 	uint8_t countDist = 0;
 	uint8_t countAcc = 0;
 	uint8_t countMotor = 0;
+
+	uint8_t start = 0;
 
 	// Get the parameters
 	vtTestStruct *param = (vtTestStruct *) pvParameters;
@@ -662,8 +664,22 @@ static portTASK_FUNCTION( vTestUpdateTask, pvParameters )
 
 		// Now, based on the type of the message and the state, we decide on the new state and action to take
 		switch(getTestMsgType(&msgBuffer)) {
+		case NavMsgTypeTimer: {
+			if(start == 0)
+			{
+				i2cCmdDistance[2] = getDL(carSPX,carSPY,simCar[3]);
+				i2cCmdDistance[3] = getDR(carSPX,carSPY,simCar[3]);
+				//printf("L:%d, R:%d/n",i2cCmdDistance[2],i2cCmdDistance[3]);
+	
+				if (vtI2CConQ(devPtr,DistanceMsg,0x4F,sizeof(i2cCmdDistance),i2cCmdDistance,sizeof(i2cCmdDistance)) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+				}
+			}
+			break;
+		}
 		case TestMsgTypeTimer: {
-
+		if(start == 1)
+		{
 			//straight
 			if(lastCommand == 0)
 			{
@@ -933,11 +949,12 @@ static portTASK_FUNCTION( vTestUpdateTask, pvParameters )
 			
 			i2cCmdDistance[2] = getDL(carSPX,carSPY,simCar[3]);
 			i2cCmdDistance[3] = getDR(carSPX,carSPY,simCar[3]);
-			
+			//printf("L:%d, R:%d/n",i2cCmdDistance[2],i2cCmdDistance[3]);
 
 			if (vtI2CConQ(devPtr,DistanceMsg,0x4F,sizeof(i2cCmdDistance),i2cCmdDistance,sizeof(i2cCmdDistance)) != pdTRUE) {
 				VT_HANDLE_FATAL_ERROR(0);
 			}
+		}
 			break;
 		}
 		case vtI2CMsgTypeMotorSend: {
@@ -994,6 +1011,7 @@ static portTASK_FUNCTION( vTestUpdateTask, pvParameters )
 			else
 				lastCommand = 20;
 			
+			start = 1;
 			//printf("LastC: %d\n",lastCommand);	
 			break;
 		}
