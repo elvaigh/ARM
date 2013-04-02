@@ -35,4 +35,7 @@ void vStartMapTask(vtMapStruct *mapData,unsigned portBASE_TYPE uxPriority, vtI2C
 // Return:
 //   Result of the call to xQueueSend()
 portBASE_TYPE SendMapMsg(vtMapStruct *mapData,uint8_t msgType,uint8_t value,uint8_t rightDistance,uint8_t leftDistance,portTickType ticksToBlock);
+
+//prints the map
+void printMap();
 #endif

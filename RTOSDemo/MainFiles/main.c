@@ -200,7 +200,7 @@ static vtMapStruct mapData;
 static vtConductorStruct conductorData;
 #endif
 
-#if TESTING == 1
+#if TESTING == 0
 //data structure required for testing
 static vtTestStruct vtTestData;
 #endif
@@ -273,6 +273,8 @@ int main( void )
 	vStartNavTask(&navData,mainNAV_TASK_PRIORITY,&vtI2C0,&vtLCDdata,&mapData,&vtTestData);
 	// starts a navigation timer that will send messages to the Navigation task. The timer will determine how often the data is sampled.
 	startTimerForNav(&navData);
+	//starts the mapping task
+	vStartMapTask(&mapData,mainMAP_TASK_PRIORITY,&vtI2C0,&vtLCDdata);
 	//starts the distance task
 	vStartDistanceTask(&distanceData,mainDISTANCE_TASK_PRIORITY,&vtI2C0,&vtLCDdata);
 	// start up a "conductor" task that will move messages around

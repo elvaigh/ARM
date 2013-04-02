@@ -44,6 +44,17 @@ typedef struct __vtNavMsg {
 
 #define PRINTGRAPH 0
 
+#define HAULT 0
+#define STRAIGHT 1
+#define LEFT 2
+#define RIGHT 3
+
+#define SMALLRAID  20
+#define LARGERAID  60
+
+#define USEMAPPING 0
+
+uint8_t RUN = 1;
 
 // end of defs
 /* *********************************************** */
@@ -104,6 +115,10 @@ portBASE_TYPE SendSensorTimerMsg(vtNavStruct *navData,portTickType ticksElapsed,
 	navBuffer.msgType = SensorMsgTypeTimer;
 	return(xQueueSend(navData->inQ,(void *) (&navBuffer),ticksToBlock));
 }
+void updateRun(uint8_t runNum)
+{
+	RUN = runNum;
+}
 
 // End of Public API
 /*-----------------------------------------------------------*/
@@ -143,12 +158,6 @@ uint8_t getVal2(vtNavMsg *Buffer)
 	uint8_t i2cCmdHault[] = {0x34,0x00,0x00,0x00};
 // end of I2C command definitions
 
-// Definitions of the states for the FSM below
-const uint8_t fsmStateStraight = 0;
-const uint8_t fsmStateTurnLeft = 1;
-const uint8_t fsmStateTurnRight = 2;	  
-const uint8_t fsmStateHault = 3;
-
 // This is the actual task that is run
 static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 {
@@ -180,7 +189,9 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 	// Buffer for receiving messages
 	vtNavMsg msgBuffer;
 
-	uint8_t currentState;
+	//used to know when to tell the map we changed state
+	uint8_t curState = HAULT;
+	uint8_t curRaid = 0;
 
 	float distanceF = 0.0;
 
@@ -188,8 +199,6 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 
 	// This task is implemented as a Finite State Machine.  The incoming messages are examined to see
 	//   whether or not the state should change.
-	
-	currentState = fsmStateStraight;
 	  
 	// Like all good tasks, this should never exit
 	for(;;)
@@ -201,27 +210,6 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 
 		// Now, based on the type of the message and the state, we decide on the new state and action to take
 		switch(getMsgType(&msgBuffer)) {
-		case vtI2CMsgTypeMotorRead: {
-
-			//Send a message to the map telling it what we got
-			int msgCount = getCount(&msgBuffer);
-			int val1 = getVal1(&msgBuffer);
-			int val2 = getVal2(&msgBuffer);
-
-		
-			/*if (SendMapMsg(mapData,MapMessageMotor,msgCount,val1,val2,portMAX_DELAY) != pdTRUE) {
-						VT_HANDLE_FATAL_ERROR(0);
-					} */
-			
-			sprintf(lcdBuffer,"Receiving Motor");
-			if (lcdData != NULL) {
-				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,0,portMAX_DELAY) != pdTRUE) {
-					VT_HANDLE_FATAL_ERROR(0);
-				}
-			}
-
-			break;
-		}
 		case DistanceMsg: {
 			int msgCount = getCount(&msgBuffer);
 			int val1 = getVal1(&msgBuffer);
@@ -246,12 +234,7 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 					countDistance = msgCount;
 				}
 			}
-			sprintf(lcdBuffer,"D: %d %d",val1,val2);
-			if (lcdData != NULL) {
-				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,5,portMAX_DELAY) != pdTRUE) {
-					VT_HANDLE_FATAL_ERROR(0);
-				}
-			}
+			
 			i2cCmdTurn[1] = countMotorCommand;
 			countMotorCommand++;
 
@@ -259,36 +242,111 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 			{
 				distanceF = (float)(val1-val2)/(float)(val1+val2);
 				//set response
-				//0 for straight
+				//127 for straight
 				//10 for small left (15-100) cm
 				//11 for hard left (<15) cm
 				//20 for small right (15-100) cm
 				//21 for hard right (<15) cm
-				// 0 = straight
-				// 127 = spin left
+				// 0 = spin left
 				// 128 = spin right
-				// anything between 0 and 127 = turn left with a turn radius of (127 - val2)
-				// anything between 128 and 255 = turn right with a turn radius of (val2 - 128)
+				// anything between 0 and 126 = turn left with a turn radius of (val2)
+				// anything between 128 and 255 = turn right with a turn radius of (val2 + 128)
 	
-				//hard Left (127-10cm radius) = 117
+				//hard Left (SMALLRAID)
 				if(distanceF > 0.4)
-					i2cCmdTurn[3] = 117;
-				//small Left (127-20cm radius) = 107
+				{
+					i2cCmdTurn[3] = SMALLRAID;
+					//SMALLRAID is radius
+					#if(USEMAPPING == 1)
+					if((curState != LEFT) || (curRaid != SMALLRAID))
+					{
+						if (SendMapMsg(mapData,MapTurnLeft,0,0,SMALLRAID,portMAX_DELAY) != pdTRUE) {
+							VT_HANDLE_FATAL_ERROR(0);
+						}
+						curState = LEFT;
+						curRaid = SMALLRAID;
+					}
+					#endif
+				}
+				//small Left
 				else if(distanceF > 0)
-					i2cCmdTurn[3] = 107;
-				//0 = straight
+				{
+					i2cCmdTurn[3] = LARGERAID;
+					//20 is radius
+					#if(USEMAPPING == 1)
+					if((curState != LEFT) || (curRaid != LARGERAID))
+					{
+						if (SendMapMsg(mapData,MapTurnLeft,0,0,LARGERAID,portMAX_DELAY) != pdTRUE) {
+							VT_HANDLE_FATAL_ERROR(0);
+						}
+						curState = LEFT;
+						curRaid = 20;
+					}
+					#endif
+				}
+				//127 = straight
 				else if(distanceF == 0)
-					i2cCmdTurn[3] = 0;
-				//hard Right (128+10cm radius) = 138
+				{
+					i2cCmdTurn[3] = 127;
+					//255 is radius
+					#if(USEMAPPING == 1)
+					if((curState != STRAIGHT))
+					{
+						if (SendMapMsg(mapData,MapStraight,0,0,127,portMAX_DELAY) != pdTRUE) {
+							VT_HANDLE_FATAL_ERROR(0);
+						}
+						curState = STRAIGHT;
+						curRaid = 127;
+					}
+					#endif
+				}
+				//hard Right (128+SMALLRAID)
 				else if(distanceF < -0.4)
-					i2cCmdTurn[3] = 138;
-				//small left (128+20cm radius) = 148
+				{
+					i2cCmdTurn[3] = 128 + SMALLRAID;
+					#if(USEMAPPING == 1)
+					if((curState != RIGHT)||(curRaid != SMALLRAID))
+					{
+						//10 is radius
+						if (SendMapMsg(mapData,MapTurnRight,0,0,SMALLRAID,portMAX_DELAY) != pdTRUE) {
+							VT_HANDLE_FATAL_ERROR(0);
+						}
+						curState = RIGHT;
+						curRaid = 10;
+					}
+					#endif
+				}
+				//small Right (128+LARGERAID)
 				else
-					i2cCmdTurn[3] = 148;
+				{
+					i2cCmdTurn[3] = 128 + LARGERAID;
+					#if(USEMAPPING == 1)
+					if((curState != RIGHT)||(curRaid != 20))
+					{
+						//20 is radius
+						if (SendMapMsg(mapData,MapTurnRight,0,0,LARGERAID,portMAX_DELAY) != pdTRUE) {
+							VT_HANDLE_FATAL_ERROR(0);
+						}
+						curState = RIGHT;
+						curRaid = 10;
+					}
+					#endif
+				}
 			}
 			else
 			{
 				i2cCmdTurn[3] = 0;
+				//255 is radius
+				#if(USEMAPPING == 1)
+				if((curState != STRAIGHT))
+				{
+					if (SendMapMsg(mapData,MapStraight,0,0,127,portMAX_DELAY) != pdTRUE) {
+						VT_HANDLE_FATAL_ERROR(0);
+					}
+					curState = STRAIGHT;
+					curRaid = 255;
+				}
+				#endif
 			}
 			//printf("S:%d:%d:%d \n",val1,val2,i2cCmdTurn[3]);
 			/*if (lcdData != NULL) {
@@ -342,6 +400,12 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 
 			break;
 		}
+		case UpdateSpeed: {
+			int speed = getVal2(&msgBuffer);
+			i2cCmdStraight[2] = speed;
+			i2cCmdTurn[2] = speed;
+			break;
+		}
 		case vtI2CMsgTypeAccRead: {
 
 			int msgCount = getCount(&msgBuffer);
@@ -393,8 +457,17 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 				VT_HANDLE_FATAL_ERROR(0);
 			}
 			#endif
+			
+			//send the message to map that we are haulting
+			if (SendMapMsg(mapData,MapHault,0,0,0,portMAX_DELAY) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+			}
+			//send the message to print the map
+			if (SendMapMsg(mapData,PrintMap,0,0,0,portMAX_DELAY) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+				}
 			//hault all navigation
-			while(1);
+			while(RUN == 1);
 			break;
 		}
 		case NavMsgTypeTimer: {

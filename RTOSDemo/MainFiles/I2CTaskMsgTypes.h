@@ -17,8 +17,8 @@
 // below is not actually an i2c message, but the value is reserved
 #define NavMsgTypeTimer 3 
 #define SensorMsgTypeTimer 4 
-#define MapMessageMotor 5
-#define MapMessageStateChange 6
+#define UpdateSpeed 5				//sent from mapping to navigation
+//#define MapMessageStateChange 6
 
 //used for testing purposes
 #define vtMsgTypeNavMsg	7
@@ -29,5 +29,10 @@
 #define DistanceMsg 10
 #define FrontValMsg 11
 
+#define MapStraight 12
+#define MapTurnLeft 13
+#define MapTurnRight 14
+#define MapHault 15
+#define PrintMap 16
 
 #endif

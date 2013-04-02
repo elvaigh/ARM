@@ -86,10 +86,10 @@ static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 		// Decide where to send the message 
 		// This isn't a state machine, it is just acting as a router for messages
 		switch(recvMsgType) {
-		case vtI2CMsgTypeMotorRead: {
-			SendNavMsg(navData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
+		/*case vtI2CMsgTypeMotorRead: {
+			SendMapMsg(mapData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
 			break;
-		}
+		}*/
 		case vtI2CMsgTypeAccRead: {
 			SendNavMsg(navData,recvMsgType,(*countPtr),(*val1Ptr),(*val2Ptr),portMAX_DELAY);
 			break;
