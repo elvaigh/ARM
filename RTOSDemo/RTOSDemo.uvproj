@@ -376,6 +376,11 @@
               <FileType>1</FileType>
               <FilePath>.\MainFiles/distance.c</FilePath>
             </File>
+            <File>
+              <FileName>MotorControl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MainFiles/MotorControl.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
