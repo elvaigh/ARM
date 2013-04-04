@@ -11,9 +11,11 @@ void sendMotorCommand( vtI2CStruct * devPtr, uint8_t speed, uint8_t turning ) {
 	msgbuffer[2] = speed;
 	msgbuffer[3] = turning;
 	
-	if( vtI2CEnQ( devPtr, MSGT_MOTOR_COMMAND, 0x4F, sizeof(msgbuffer), msgbuffer,0 ) != pdTRUE ) {
+	if( vtI2CEnQ( devPtr, MSGT_MOTOR_COMMAND, 0x4F, sizeof(msgbuffer), msgbuffer, 0 ) != pdTRUE ) {
 		VT_HANDLE_FATAL_ERROR(0);
 	}
+
+	count++;
 }
 
 uint8_t getDistanceTraveledInMillimeters( uint8_t side, uint8_t * msgbuffer ) {
