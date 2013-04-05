@@ -15,6 +15,7 @@
 #include "LCDtask.h"
 #include "I2CTaskMsgTypes.h"
 #include "testing.h"
+#include "mapping.h"
 
 /* *********************************************** */
 // definitions and data structures that are private to this file
@@ -54,8 +55,8 @@ typedef struct __vtTestI2CMsg {
 #define CARSTARTANGLE 0
 
 //chose the type of course
-#define TESTSTRAIGHT 0
-#define TESTRIGHTTURN 1
+#define TESTSTRAIGHT 1
+#define TESTRIGHTTURN 0
 #define TESTLEFTTURN 0
 #define TESTSPACERIGHT 0
 #define TESTINTERSECTION 0
@@ -323,6 +324,7 @@ int getDR(int cPX, int cPY, int angle)
 	uint8_t i2cCmdReadVals[]= {0xAA};
 	uint8_t i2cCmdDistance[] = {0x0A,0x00,0x00,0x00};
 	uint8_t i2cCmdFinish[] = {0x36,0x00,0x00,0x00};
+	uint8_t i2cCmdMotor[] = {0x35,0x00,0x01,0x01};
 // end of I2C command definitions
 
 
@@ -843,6 +845,12 @@ static portTASK_FUNCTION( vTestUpdateTask, pvParameters )
 			  	//printf(lastCommand+ "\n");
 				VT_HANDLE_FATAL_ERROR(0);
 			}
+
+			//Send Motor Message
+			if (vtI2CConQ(devPtr,vtI2CMsgTypeMotorRead,0x4F,sizeof(i2cCmdMotor),i2cCmdMotor,sizeof(i2cCmdMotor)) != pdTRUE) {
+				VT_HANDLE_FATAL_ERROR(0);
+			}
+
 			//print Car
 			if (lcdData != NULL) {
 				if (SendLCDPixel(lcdData,simCar[0],simCar[1],portMAX_DELAY) != pdTRUE) {
@@ -875,7 +883,7 @@ static portTASK_FUNCTION( vTestUpdateTask, pvParameters )
 				//send finish line command
 				if (vtI2CConQ(devPtr,vtI2CMsgTypeAccRead,0x4F,sizeof(i2cCmdFinish),i2cCmdFinish,sizeof(i2cCmdFinish)) != pdTRUE) {
 					VT_HANDLE_FATAL_ERROR(0);
-				}	
+				}
 			}
 
 			i2cCmdDistance[1] = countDist;

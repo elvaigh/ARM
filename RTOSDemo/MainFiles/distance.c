@@ -48,6 +48,9 @@ typedef struct __vtDistanceI2CMsg {
 
 #define PRINTGRAPH 0
 
+uint8_t Rmessage = 0;
+uint8_t	Lmessage = 0;
+
 
 // end of defs
 /* *********************************************** */
@@ -122,23 +125,23 @@ portBASE_TYPE vtDistanceEnQ(vtDistanceStruct *dev,uint8_t msgType,uint8_t slvAdd
 
 // End of Public API
 /*-----------------------------------------------------------*/
-int getDistanceMsgType(vtDistanceI2CMsg *Buffer)
+int getDistanceMsgType(vtDistanceMsg *Buffer)
 {
 	return(Buffer->msgType);
 }
-uint8_t getDistanceCount(vtDistanceI2CMsg *Buffer)
+uint8_t getDistanceCount(vtDistanceMsg *Buffer)
 {
-	uint8_t val = (uint8_t) Buffer->buf[1];
+	uint8_t val = (uint8_t) Buffer->count;
 	return(val);
 }
-uint8_t getDistanceVal1(vtDistanceI2CMsg *Buffer)
+uint8_t getDistanceVal1(vtDistanceMsg *Buffer)
 {
-	uint8_t rad = (uint8_t) Buffer->buf[2];
+	uint8_t rad = (uint8_t) Buffer->value1;
 	return(rad);
 }
-uint8_t getDistanceVal2(vtDistanceI2CMsg *Buffer)
+uint8_t getDistanceVal2(vtDistanceMsg *Buffer)
 {
-	uint8_t rd = (uint8_t) Buffer->buf[3];
+	uint8_t rd = (uint8_t) Buffer->value2;
 	return(rd);
 }
 
@@ -172,7 +175,7 @@ static portTASK_FUNCTION( vDistanceUpdateTask, pvParameters )
 	char lcdBuffer[vtLCDMaxLen+1];
 
 	// Buffer for receiving messages
-	vtDistanceI2CMsg msgBuffer;
+	vtDistanceMsg msgBuffer;
 
 	// Assumes that the I2C device (and thread) have already been initialized
 
@@ -234,11 +237,16 @@ static portTASK_FUNCTION( vDistanceUpdateTask, pvParameters )
 			i2cCmdDistance[1] = countDist;
 			countDist++;
 			//you need to update the values
-			//i2cCmdDistance[2] = left
+			i2cCmdDistance[2] = value;
 			//i2cCmdDistance[3] = right
-
-			if (vtI2CConQ(devPtr,DistanceMsg,0x4F,sizeof(i2cCmdDistance),i2cCmdDistance,sizeof(i2cCmdDistance)) != pdTRUE) {
-				VT_HANDLE_FATAL_ERROR(0);
+			Lmessage = 1;
+			if(Rmessage != 0)
+			{
+				Lmessage = 0;
+				Rmessage = 0;
+				if (vtI2CConQ(devPtr,DistanceMsg,0x4F,sizeof(i2cCmdDistance),i2cCmdDistance,sizeof(i2cCmdDistance)) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+				}
 			}
 			//end send of distance command
 
@@ -254,7 +262,7 @@ static portTASK_FUNCTION( vDistanceUpdateTask, pvParameters )
 			// val2 = 8765 4321
 			//if so the below undoes it and puts it back together
 			//piece together 10 bit value
-			int value = val1* 256 + val2;
+			int value = (val1<<8) + val2;
 
 			if(countStartIR2 == 0)
 			{
@@ -298,7 +306,7 @@ static portTASK_FUNCTION( vDistanceUpdateTask, pvParameters )
 			// val2 = 8765 4321
 			//if so the below undoes it and puts it back together
 			//piece together 10 bit value
-			int value = val1* 256 + val2;
+			int value = (val1<<8) + val2;
 
 			if(countStartIR3 == 0)
 			{
@@ -326,6 +334,17 @@ static portTASK_FUNCTION( vDistanceUpdateTask, pvParameters )
 			sprintf(lcdBuffer,"IR3:%d",value);
 			if (lcdData != NULL) {
 				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,2,portMAX_DELAY) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+				}
+			}
+
+			i2cCmdDistance[3] = value;
+			Rmessage = 1;
+			if(Lmessage != 0)
+			{
+				Lmessage = 0;
+				Rmessage = 0;
+				if (vtI2CConQ(devPtr,DistanceMsg,0x4F,sizeof(i2cCmdDistance),i2cCmdDistance,sizeof(i2cCmdDistance)) != pdTRUE) {
 					VT_HANDLE_FATAL_ERROR(0);
 				}
 			}
