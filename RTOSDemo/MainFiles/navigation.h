@@ -4,6 +4,15 @@
 #include "lcdTask.h"
 #include "mapping.h"
 #include "testing.h"
+
+// actual data structure that is sent in a message
+typedef struct __vtNavMsg {
+	uint8_t msgType;
+	uint8_t count;	 
+	uint8_t value1;	 
+	uint8_t value2;
+} vtNavMsg;
+
 // Structure used to pass parameters to the task
 // Do not touch...
 typedef struct __NavStruct {

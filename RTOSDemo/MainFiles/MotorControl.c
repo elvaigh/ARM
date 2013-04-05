@@ -18,14 +18,15 @@ void sendMotorCommand( vtI2CStruct * devPtr, uint8_t speed, uint8_t turning ) {
 	count++;
 }
 
-uint8_t getDistanceTraveledInMillimeters( uint8_t side, uint8_t * msgbuffer ) {
-	return msgbuffer[side];
+uint8_t getDistanceTraveledInMillimeters( uint8_t value ) {
+	float millimeters = (float) value / 8.0f;
+	return (uint8_t) millimeters;
 }
 
-uint8_t getLeftDistanceTraveledInMillimeters( uint8_t * msgbuffer ) {
-	return getDistanceTraveledInMillimeters( MOTOR_LEFT_SIDE, msgbuffer );
+uint8_t getLeftDistanceTraveledInMillimeters( vtNavMsg * msg ) {
+	return getDistanceTraveledInMillimeters( msg->value1 );
 }
 
-uint8_t getRightDistanceTraveledInMillimeters( uint8_t * msgbuffer ) {
-	return getDistanceTraveledInMillimeters( MOTOR_RIGHT_SIDE, msgbuffer );
+uint8_t getRightDistanceTraveledInMillimeters( vtNavMsg * msg ) {
+	return getDistanceTraveledInMillimeters( msg->value2 );
 }

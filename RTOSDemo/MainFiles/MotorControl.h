@@ -3,13 +3,12 @@
 
 #include "freertos.h"
 #include "vtI2C.h"
+#include "navigation.h"
 
 #define MSGT_MOTOR_DATA 53
 #define MSGT_MOTOR_COMMAND 52
 
-#define MOTOR_LEFT_SIDE 2
-#define MOTOR_RIGHT_SIDE 3
-
+#define HALT				0
 #define TEN_CM_S			10
 #define TWENTY_CM_S			20
 #define THIRTY_CM_S			30
@@ -29,14 +28,16 @@
 #define RIGHT_TWENTY_CM		148
 #define RIGHT_THIRTY_CM		158
 
-#define TEST_STRAIGHT		1
-#define TEST_RIGHT_TURN		0
-#define TEST_LEFT_TURN		0
-#define TEST_RIGHT_PIVOT	0
-#define TEST_LEFT_PIVOT		0
+#define TEST_STRAIGHT			0
+#define TEST_RIGHT_TURN			0
+#define TEST_LEFT_TURN			0
+#define TEST_RIGHT_PIVOT		0
+#define TEST_LEFT_PIVOT			0
+#define TEST_CHANGE_SPEED		1
+#define TEST_STRAIGHT_TO_TURN	0
 
 void sendMotorCommand( vtI2CStruct * devPtr, uint8_t speed, uint8_t turning );
-uint8_t getLeftDistanceTraveledInMillimeters( uint8_t * msgbuffer );
-uint8_t getRightDistanceTraveledInMillimeters( uint8_t * msgbuffer );
+uint8_t getLeftDistanceTraveledInMillimeters( vtNavMsg * msg );
+uint8_t getRightDistanceTraveledInMillimeters( vtNavMsg * msg );
 
 #endif // MOTOR_CONTROL_H

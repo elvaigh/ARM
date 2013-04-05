@@ -30,13 +30,7 @@
 #define ACCELMIN 15		   //Need to change based on real world accelerator values
 #define ACCEPTABLEMISS 20  //1 second
 
-// actual data structure that is sent in a message
-typedef struct __vtNavMsg {
-	uint8_t msgType;
-	uint8_t count;	 
-	uint8_t value1;	 
-	uint8_t value2;
-} vtNavMsg;
+
 
 // I have set this to a large stack size because of (a) using printf() and (b) the depth of function calls
 //   for some of the i2c operations	-- almost certainly too large, see LCDTask.c for details on how to check the size
@@ -206,14 +200,8 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 	// Buffer for receiving messages
 	vtNavMsg msgBuffer;
 
-	//used to represent the last direction turned
-	//this is used if the front IR sensor detects a wall too close
-	//which will cause the robot to turn the opposite direction of this
-	// 0 = left : 1 = right
-	//default is to turn right if the robot sees a wall in front
-	uint8_t lastTurn = 0;
-
-	float distanceF = 0.0;
+	unsigned int accelerationTestCount = 0;
+	unsigned int straightToTurnTestCount = 0;
 
 	// Assumes that the I2C device (and thread) have already been initialized
 	  
@@ -228,127 +216,68 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 		// Now, based on the type of the message and the state, we decide on the new state and action to take
 		switch(getMsgType(&msgBuffer)) {
 		case vtI2CMsgTypeMotorRead: {
-			//int leftDistance = getLeftDistanceTraveledInMillimeters( &msgBuffer );
-			//int rightDistance = getRightDistanceTraveledInMillimeters( &msgBuffer );
-//			int msgCount = getCount(&msgBuffer);
-//			int val1 = getVal1(&msgBuffer);
-//			int val2 = getVal2(&msgBuffer);
+			uint8_t leftDistance = getLeftDistanceTraveledInMillimeters( &msgBuffer );
+			uint8_t rightDistance = getRightDistanceTraveledInMillimeters( &msgBuffer );
 
-//			missedMotor = 0;
-			//Send a message to the map telling it what we got
-			/*if (SendMapMsg(mapData,MapMessageMotor,msgCount,val1,val2,portMAX_DELAY) != pdTRUE) {
-						VT_HANDLE_FATAL_ERROR(0);
-					} */
-		/*	if(countStartMotor == 0)
-			{
-				countStartMotor = 1;
-				countMotor = msgCount;
+			sprintf(lcdBuffer,"Left Distance: %d", leftDistance );
+			if (lcdData != NULL) {
+				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,0,portMAX_DELAY) != pdTRUE) {
+					VT_HANDLE_FATAL_ERROR(0);
+				}
 			}
-			else{
-				if((countMotor + 1) == msgCount)
-				{
-					countMotor = msgCount;	
-				}
-				else{
-					/*sprintf(lcdBuffer,"D IR1: %d %d",countDistance,msgCount);
-					if (lcdData != NULL) {
-						if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,6,portMAX_DELAY) != pdTRUE) {
-							VT_HANDLE_FATAL_ERROR(0);
-						}
-					
-					countMotor = msgCount;
-				}
-			}*/
-			/*sprintf(lcdBuffer,"Left Distance: %d\nRight Distance: %d", leftDistance, rightDistance );
+
+			sprintf( lcdBuffer, "Right Distance: %d", rightDistance );
 			if (lcdData != NULL) {
-				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,0,portMAX_DELAY) != pdTRUE) {
+				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,1,portMAX_DELAY) != pdTRUE) {
 					VT_HANDLE_FATAL_ERROR(0);
 				}
-			} */
-
-			#if TESTING == 0
-			#if (TEST_STRAIGHT == 1)
-				sendMotorCommand( devPtr, TWENTY_CM_S, STRAIGHT );
-			#elif TEST_RIGHT_TURN
-				sendMotorCommand( devPtr, TEN_CM_S, RIGHT_TWENTY_CM );
-			#elif TEST_LEFT_TURN
-				sendMotorCommand( devPtr, TEN_CM_S, LEFT_TWENTY_CM );
-			#elif TEST_RIGHT_PIVOT
-				sendMotorCommand( devPtr, TWENTY_CM_S, PIVOT_RIGHT );
-			#elif TEST_LEFT_PIVOT
-				sendMotorCommand( devPtr, TWENTY_CM_S, PIVOT_LEFT );
-			#elif TEST_CHANGE_SPEED
-			#endif 
-			//For now just send back a command to go straight
-			//John you can fake a turn here by changing i2cCmdStraight to i2cCmdTurn and setting i2cCmdTurn [2] to your value
-			//if (vtI2CEnQ(devPtr,vtI2CMsgTypeMotorSend,0x4F,sizeof(i2cCmdStraight),i2cCmdStraight,0) != pdTRUE) {
-			//	VT_HANDLE_FATAL_ERROR(0);
-			//}
-			#else
-			//For now just send back a command to go straight
-			//Currently sensors work in testing but not in real so resopond to motor in real
-
-			/*if (vtTestEnQ(testData,vtI2CMsgTypeMotorSend,0x4F,sizeof(i2cCmdStraight),i2cCmdStraight,0) != pdTRUE) {
-				VT_HANDLE_FATAL_ERROR(0);
-			}*/
-			#endif
-			/*sprintf(lcdBuffer,"Receiving Motor");
-			if (lcdData != NULL) {
-				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,0,portMAX_DELAY) != pdTRUE) {
-					VT_HANDLE_FATAL_ERROR(0);
-				}
-			}*/
-
+			}
 			break;
 		}
 		case NavMsgTypeTimer: {
 			#if (TEST_STRAIGHT == 1)
-			{
 				sendMotorCommand( devPtr, TWENTY_CM_S, STRAIGHT );
-				sprintf(lcdBuffer,"Enter");
-				if (lcdData != NULL) {
-					if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,2,portMAX_DELAY) != pdTRUE) {
-						VT_HANDLE_FATAL_ERROR(0);
-					}
-				}
-			}
 			#elif (TEST_RIGHT_TURN == 1)
-				sendMotorCommand( devPtr, TEN_CM_S, RIGHT_TWENTY_CM );
+				sendMotorCommand( devPtr, TWENTY_CM_S, RIGHT_TWENTY_CM );
 			#elif (TEST_LEFT_TURN == 1)
-				sendMotorCommand( devPtr, TEN_CM_S, LEFT_TWENTY_CM );
+				sendMotorCommand( devPtr, TWENTY_CM_S, LEFT_TWENTY_CM );
 			#elif (TEST_RIGHT_PIVOT	 == 1)
 				sendMotorCommand( devPtr, TWENTY_CM_S, PIVOT_RIGHT );
 			#elif (TEST_LEFT_PIVOT	== 1)
 				sendMotorCommand( devPtr, TWENTY_CM_S, PIVOT_LEFT );
-			#elif TEST_CHANGE_SPEED
+			#elif (TEST_CHANGE_SPEED == 1)
+				if( accelerationTestCount < 100 ) {
+					sendMotorCommand( devPtr, TEN_CM_S, STRAIGHT );					
+				} else if( accelerationTestCount < 200 ) {
+					sendMotorCommand( devPtr, THIRTY_CM_S, STRAIGHT );
+				} else if( accelerationTestCount < 300 ) {
+					sendMotorCommand( devPtr, TEN_CM_S, STRAIGHT );
+				} else {
+					accelerationTestCount = 300;
+					sendMotorCommand( devPtr, HALT, STRAIGHT );
+				}
+				accelerationTestCount++;
+			#elif (TEST_STRAIGHT_TO_TURN == 1)
+				if( straightToTurnTestCount < 100 ) {
+					sendMotorCommand( devPtr, TWENTY_CM_S, STRAIGHT );
+				} else if( straightToTurnTestCount < 200 ) {
+					sendMotorCommand( devPtr, TEN_CM_S, RIGHT_TEN_CM );
+				} else if( straightToTurnTestCount < 300 ) {
+					sendMotorCommand( devPtr, TWENTY_CM_S, STRAIGHT );
+				} else if( straightToTurnTestCount < 400 ) {
+					sendMotorCommand( devPtr, TWENTY_CM_S, LEFT_TWENTY_CM );
+				} else if( straightToTurnTestCount < 500 ) {
+					sendMotorCommand( devPtr, THIRTY_CM_S, STRAIGHT );
+				} else {
+					straightToTurnTestCount = 500;
+					sendMotorCommand( devPtr, HALT, STRAIGHT );
+				}
+				straightToTurnTestCount++;
 			#endif
 			//For now just send back a command to go straight
 			if (vtI2CEnQ(devPtr,NavMsgTypeTimer,0x4F,sizeof(i2cCmdReadVals),i2cCmdReadVals,4) != pdTRUE) {
 				VT_HANDLE_FATAL_ERROR(0);
 			}
-			//if so long since message received hault
-			/*if((missedMotor > ACCEPTABLEMISS) || (missedDistance > ACCEPTABLEMISS))
-			{
-				#if TESTING == 0
-				//For now just send back a command to go straight
-				if (vtI2CEnQ(devPtr,vtI2CMsgTypeMotorSend,0x4F,sizeof(i2cCmdHault),i2cCmdHault,0) != pdTRUE) {
-					VT_HANDLE_FATAL_ERROR(0);
-				}
-				#else
-				//For now just send back a command to go straight
-				if (vtTestEnQ(testData,vtI2CMsgTypeMotorSend,0x4F,sizeof(i2cCmdHault),i2cCmdHault,0) != pdTRUE) {
-					VT_HANDLE_FATAL_ERROR(0);
-				}
-				#endif
-			
-			}  */
-			/*sprintf(lcdBuffer,"Timer Messages");
-			if (lcdData != NULL) {
-				if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,6,portMAX_DELAY) != pdTRUE) {
-					VT_HANDLE_FATAL_ERROR(0);
-				}
-			} */
-			 
 			break;
 		}
 		default: {
