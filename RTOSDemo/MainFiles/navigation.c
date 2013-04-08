@@ -202,6 +202,7 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 
 	unsigned int accelerationTestCount = 0;
 	unsigned int straightToTurnTestCount = 0;
+	unsigned char motorCount = 0;
 
 	// Assumes that the I2C device (and thread) have already been initialized
 	  
@@ -235,6 +236,7 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 			break;
 		}
 		case NavMsgTypeTimer: {
+		if( motorCount == 5 ) {
 			#if (TEST_STRAIGHT == 1)
 				sendMotorCommand( devPtr, TWENTY_CM_S, STRAIGHT );
 			#elif (TEST_RIGHT_TURN == 1)
@@ -274,10 +276,13 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 				}
 				straightToTurnTestCount++;
 			#endif
-			//For now just send back a command to go straight
+			motorCount = 0;
+			}
+			motorCount++;
 			if (vtI2CEnQ(devPtr,NavMsgTypeTimer,0x4F,sizeof(i2cCmdReadVals),i2cCmdReadVals,4) != pdTRUE) {
 				VT_HANDLE_FATAL_ERROR(0);
 			}
+
 			break;
 		}
 		default: {

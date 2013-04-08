@@ -28,12 +28,12 @@
 #define RIGHT_TWENTY_CM		148
 #define RIGHT_THIRTY_CM		158
 
-#define TEST_STRAIGHT			0
+#define TEST_STRAIGHT			1
 #define TEST_RIGHT_TURN			0
 #define TEST_LEFT_TURN			0
 #define TEST_RIGHT_PIVOT		0
 #define TEST_LEFT_PIVOT			0
-#define TEST_CHANGE_SPEED		1
+#define TEST_CHANGE_SPEED		0
 #define TEST_STRAIGHT_TO_TURN	0
 
 void sendMotorCommand( vtI2CStruct * devPtr, uint8_t speed, uint8_t turning );

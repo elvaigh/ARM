@@ -23,7 +23,7 @@
 // how often the timer that sends messages to the temp task should run
 // Set the task up to run every 100 ms
 
-#define nav_RATE_BASE	( ( portTickType ) 50 / portTICK_RATE_MS)
+#define nav_RATE_BASE	( ( portTickType ) 30 / portTICK_RATE_MS)
 
 // Callback function that is called by the NavTimer
 //   Sends a message to the queue that is read by the Navigation Task
