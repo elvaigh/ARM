@@ -55,11 +55,11 @@ typedef struct __vtTestI2CMsg {
 #define CARSTARTANGLE 0
 
 //chose the type of course
-#define TESTSTRAIGHT 1
+#define TESTSTRAIGHT 0
 #define TESTRIGHTTURN 0
 #define TESTLEFTTURN 0
 #define TESTSPACERIGHT 0
-#define TESTINTERSECTION 0
+#define TESTINTERSECTION 1
 #define TESTLEFTBRANCH 0
 
 #if((TESTSTRAIGHT == 1)||(TESTINTERSECTION == 1))

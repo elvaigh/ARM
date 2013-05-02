@@ -18,6 +18,7 @@
 #include "testing.h"
 #include "I2CTaskMsgTypes.h"
 
+//not roll back
 /* *********************************************** */
 // definitions and data structures that are private to this file
 // Length of the queue to this task
@@ -153,9 +154,9 @@ uint8_t getVal2(vtNavMsg *Buffer)
 
 // I2C commands for the Motor Encoder
 	uint8_t i2cCmdReadVals[]= {0xAA};
-	uint8_t i2cCmdStraight[]= {0x34,0x00,0x01,0x00};
-	uint8_t i2cCmdTurn[]= {0x34,0x00,0x01,0x00};
-	uint8_t i2cCmdHault[] = {0x34,0x00,0x00,0x00};
+	uint8_t i2cCmdStraight[]= {0x34,0x00,0x14,0x7F};
+	uint8_t i2cCmdTurn[]= {0x34,0x00,0x14,0x00};
+	uint8_t i2cCmdHault[] = {0x34,0x00,0x00,0x7F};
 // end of I2C command definitions
 
 // This is the actual task that is run
@@ -335,6 +336,7 @@ static portTASK_FUNCTION( vNavUpdateTask, pvParameters )
 			}
 			else
 			{
+				i2cCmdTurn[3] = 127;
 				i2cCmdTurn[3] = 0;
 				//255 is radius
 				#if(USEMAPPING == 1)
